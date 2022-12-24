@@ -9,40 +9,117 @@
 			rel="stylesheet"
 		/>
 
-		<title>Tinder</title>
+		<title>Los PDF no son suficientes</title>
 	</head>
+
 	<body>
-		<nav class="navbar">
-			<i class="fas fa-fire"></i>
-			<i class="fas fa-comments"></i>
-			<i class="fas fa-user"></i>
-		</nav>
 
 		<div class="photo-and-actions">
-			<div class="photo">
-				<div class="photo-text">
-					<div class="photo-name-and-age">
-						<h2>Lorem</h2>
-						<h2>21</h2>
-					</div>
-					<div class="photo-bio">
-						xddddddd
-					</div>
-				</div>
-			</div>
+		No hay nada en especifico que te quiera decir pero de todos modos lo quiero hacer...
 
-			<div class="actions">
-				<div class="action">
-					<i class="fas fa-times"></i>
-				</div>
-				<div class="action">
-					<i class="fas fa-star"></i>
-				</div>
+		<br><br>Lo hare y pondre aqui dentro de estos dias antes de año nuevo xd
+		<br><br>
+		<span id="Dia_esperado"></span>
 
-				<div class="action">
-					<i class="fas fa-heart"></i>
-				</div>
-			</div>
+
+<style type="text/css">.photo-and-actions {
+	width: 90%;
+    text-align: center;
+    justify-content: center;
+
+	}
+</style>
+<div style="position: relative;">
+        <h3 id="Lo_que_falta" class="animate-charcter"><a href="user/index.php"></a> </h3>
+
+</div>
+
+
+
+
+
+
+
+
+
+
+
+<script type="text/javascript">
+
+    var p = document.getElementById('Dia_esperado');
+    var q = document.getElementById('Lo_que_falta');
+
+    var sec = 0;
+    var t;
+    var estado = 0;
+
+    contenido = document.querySelector("#contenido");
+
+
+
+    function tick(){
+      sec++;
+      var date = new Date();
+      año = date.getFullYear();
+      mes = date.getMonth();
+      dia = date.getDate();
+
+      hora = date.getHours();
+      minuto = date.getMinutes();
+      segundo = date.getSeconds();
+
+
+
+       // p.textContent = "Año: "+año+"  Mes: "+mes+"  Dia: "+dia+"  "+hora+":"+minuto+":"+segundo;
+
+
+     diaRestante = 31-dia;
+      horaRestante = 23-date.getHours();
+      minutoRestante = 59-date.getMinutes();
+      segundoRestante = 59-date.getSeconds();
+
+
+      q.textContent = "Dias restantes: "+diaRestante+"  Horas restantas: "+horaRestante+":"+minutoRestante+":"+segundoRestante;
+
+      if ((dia>=25)&&(estado==0)){
+        estado = 1;
+        contenido.style.display ="block";
+        q.style.display ="none";
+
+        setTimeout(() => {
+            contenido.style.opacity ="1";
+
+        }, 500);
+
+
+    }
+
+
+
+
+
+}
+
+
+
+
+
+
+
+
+
+function add() {
+  tick();
+  timer();
+}
+function timer() {
+  t = setTimeout(add, 1000);
+}
+add();
+
+
+</script>
+
 		</div>
 
 		<!-- Font Awesome -->
