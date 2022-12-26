@@ -80,9 +80,9 @@
       segundoRestante = 59-date.getSeconds();
 
 
-      q.textContent = "Dias restantes: "+diaRestante+"	Horas restantes: "+horaRestante+":"+minutoRestante+":"+segundoRestante;
+      q.textContent = "Me quedan "+diaRestante+"dias y "+horaRestante+":"+minutoRestante+":"+segundoRestante+" horas para hacerlo";
 
-      if ((dia>=25)&&(estado==0)){
+      if ((dia>=31)&&(estado==0)){
         estado = 1;
         contenido.style.display ="block";
         q.style.display ="none";
