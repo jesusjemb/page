@@ -1,96 +1,126 @@
 <!DOCTYPE html>
 <html lang="en">
-	<head>
-		<meta charset="UTF-8" />
-		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-		<link rel="stylesheet" href="css/styles.css" />
-		<link
-			href="https://fonts.googleapis.com/css2?family=Roboto&display=swap"
-			rel="stylesheet"
-		/>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="css/styles.css" />
+  <link
+  href="https://fonts.googleapis.com/css2?family=Roboto&display=swap"
+  rel="stylesheet"
+  />
 
-		<title>Los PDF pasaron de moda :v</title>
-	</head>
+  <title>Los PDF pasaron de moda :v</title>
+</head>
 
-	<body>
+<body>
 
-		<div class="photo-and-actions">
-		No hay nada en especifico que te quiera decir pero de todos modos lo quiero hacer...
+  <div class="photo-and-actions">
+    No hay nada en especifico que te quiera decir pero de todos modos lo quiero hacer...
 
-		<br><br>Lo hare y pondre aqui dentro de estos dias antes de año nuevo xd
-		<br><br>
-		<span id="Dia_esperado"></span>
+    <br><br>Lo hare y pondre aqui dentro de estos dias antes de año nuevo xd
+    <br><br>
+    <span id="Dia_esperado"></span>
+    <br>
+    <div style="position: relative;">
+      <h3 id="Lo_que_falta" class="animate-charcter"><a href="user/index.php"></a> </h3>
 
+    </div>
 
-<style type="text/css">.photo-and-actions {
-	
-	
-    text-align: center;
-    justify-content: center;
+    <div style="text-align:center"> 
 
-	}
-</style>
-<div style="position: relative;">
-        <h3 id="Lo_que_falta" class="animate-charcter"><a href="user/index.php"></a> </h3>
+      <br><br>
+      <video id="video1" width="420">
+        <source src="video.mp4" type="video/mp4">
 
-</div>
+        </video>
+      </div> 
 
+      <script> 
+        var myVideo = document.getElementById("video1"); 
 
-
-
-
-
-
-
-
-
-
-<script type="text/javascript">
-
-    var p = document.getElementById('Dia_esperado');
-    var q = document.getElementById('Lo_que_falta');
-
-    var sec = 0;
-    var t;
-    var estado = 0;
-
-    contenido = document.querySelector("#contenido");
+        function playPause() { 
+          if (myVideo.paused) 
+            myVideo.play(); 
+          else 
+            myVideo.pause(); 
+        } 
+      </script> 
+      <button onclick="playPause()">Play/Pause</button> 
 
 
 
-    function tick(){
-      sec++;
-      var date = new Date();
-      año = date.getFullYear();
-      mes = date.getMonth();
-      dia = date.getDate();
+      <style type="text/css">.photo-and-actions {
 
-      hora = date.getHours();
-      minuto = date.getMinutes();
-      segundo = date.getSeconds();
+
+        text-align: center;
+        justify-content: center;
+
+      }
+    </style>
+
+
+
+
+
+
+
+
+
+
+
+
+    <script type="text/javascript">
+
+      var p = document.getElementById('Dia_esperado');
+      var q = document.getElementById('Lo_que_falta');
+
+      var sec = 0;
+      var t;
+      var estado = 0;
+
+      contenido = document.querySelector("#contenido");
+
+
+
+      function tick(){
+        sec++;
+        var date = new Date();
+        año = date.getFullYear();
+        mes = date.getMonth();
+        dia = date.getDate();
+
+        hora = date.getHours();
+        minuto = date.getMinutes();
+        segundo = date.getSeconds();
 
 
 
        // p.textContent = "Año: "+año+"  Mes: "+mes+"  Dia: "+dia+"  "+hora+":"+minuto+":"+segundo;
 
 
-     diaRestante = 31-dia;
-      horaRestante = 23-date.getHours();
-      minutoRestante = 59-date.getMinutes();
-      segundoRestante = 59-date.getSeconds();
+       diaRestante = 31-dia;
+       horaRestante = 23-date.getHours();
+       minutoRestante = 59-date.getMinutes();
+       segundoRestante = 59-date.getSeconds();
 
 
-      q.textContent = "Me quedan "+diaRestante+" dias y "+horaRestante+":"+minutoRestante+":"+segundoRestante+" horas para hacerlo";
+       q.textContent = "Me quedan "+diaRestante+" dias y "+horaRestante+":"+minutoRestante+":"+segundoRestante+" horas para hacerlo";
 
-      if ((dia>=31)&&(estado==0)){
+       if ((dia>=31)&&(estado==0)){
         estado = 1;
         contenido.style.display ="block";
         q.style.display ="none";
 
         setTimeout(() => {
-            contenido.style.opacity ="1";
+          contenido.style.opacity ="1";
 
         }, 500);
+
+
+      }
+
+
+
 
 
     }
@@ -99,34 +129,28 @@
 
 
 
-}
 
 
 
 
+    function add() {
+      tick();
+      timer();
+    }
+    function timer() {
+      t = setTimeout(add, 1000);
+    }
+    add();
 
 
+  </script>
 
+</div>
 
-
-function add() {
-  tick();
-  timer();
-}
-function timer() {
-  t = setTimeout(add, 1000);
-}
-add();
-
-
-</script>
-
-		</div>
-
-		<!-- Font Awesome -->
-		<script
-			src="https://kit.fontawesome.com/f9e19193d6.js"
-			crossorigin="anonymous"
-		></script>
-	</body>
+<!-- Font Awesome -->
+<script
+src="https://kit.fontawesome.com/f9e19193d6.js"
+crossorigin="anonymous"
+></script>
+</body>
 </html>
