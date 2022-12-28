@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title></title>
+</head>
+<body>
+<h1>JavaScript localStorage demo</h1>
+    <textarea id="myTextarea" rows="10" cols="80"></textarea>
+    <p></p>
+    <button onclick="mySave()">Save</button>
+    <button onclick="myLoad()">Load</button>
+    <script>
+      function mySave() {
+        var myContent = document.getElementById("myTextarea").value;
+        localStorage.setItem("myContent", myContent);
+      }
+      function myLoad() {
+        var myContent = localStorage.getItem("myContent");
+        document.getElementById("myTextarea").value = myContent;
+      }
+    </script>
+</body>
+</html>
