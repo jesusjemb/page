@@ -1,27 +1,172 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-	<meta charset="utf-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<title></title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="css/styles.css" />
+  <link
+  href="https://fonts.googleapis.com/css2?family=Roboto&display=swap"
+  rel="stylesheet"
+  />
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+
+
+  <title>Los PDF pasaron de moda :v</title>
 </head>
+
 <body>
-<h1>JavaScript localStorage demo</h1>
-<br>Escribe texto:
-<br>
-    <textarea id="myTextarea" rows="10" cols="80"></textarea>
-    <p></p>
-    <button onclick="mySave()">Guardar</button>
-    <button onclick="myLoad()">Recuperar texto</button>
-    <script>
-      function mySave() {
-        var myContent = document.getElementById("myTextarea").value;
-        localStorage.setItem("myContent", myContent);
+
+  <div class="photo-and-actions">
+    No hay nada en especifico que te quiera decir pero de todos modos lo quiero hacer...
+
+    <br><br>Lo hare y pondre aqui dentro de estos dias antes de año nuevo xd
+    <br><br>
+    <span id="Dia_esperado"></span>
+    <br>
+    <div style="position: relative;">
+      <h3 id="Lo_que_falta" class="animate-charcter"><a href="user/index.php"></a> </h3>
+
+    </div>
+
+    <div style="text-align:center"> 
+
+      <br><br><p>Mientras tanto...</p><br>
+      <video id="video1" width="50%">
+        <source src="video.mp4" type="video/mp4">
+
+        </video>
+      </div> 
+
+      <script> 
+        var myVideo = document.getElementById("video1"); 
+
+        function playPause() { 
+          if (myVideo.paused) 
+            myVideo.play(); 
+          else 
+            myVideo.pause(); 
+        } 
+      </script> 
+      <p onclick="playPause()"><svg
+  width="24"
+  height="24"
+  viewBox="0 0 24 24"
+  fill="none"
+  xmlns="http://www.w3.org/2000/svg"
+>
+  <path
+    fill-rule="evenodd"
+    clip-rule="evenodd"
+    d="M12 21C16.9706 21 21 16.9706 21 12C21 7.02944 16.9706 3 12 3C7.02944 3 3 7.02944 3 12C3 16.9706 7.02944 21 12 21ZM12 23C18.0751 23 23 18.0751 23 12C23 5.92487 18.0751 1 12 1C5.92487 1 1 5.92487 1 12C1 18.0751 5.92487 23 12 23Z"
+    fill="currentColor"
+  />
+  <path d="M16 12L10 16.3301V7.66987L16 12Z" fill="currentColor" />
+</svg></p> 
+
+
+
+      <style type="text/css">.photo-and-actions {
+
+
+        text-align: center;
+        justify-content: center;
+
       }
-      function myLoad() {
-        var myContent = localStorage.getItem("myContent");
-        document.getElementById("myTextarea").value = myContent;
+    </style>
+
+
+
+
+
+
+
+
+
+
+
+
+    <script type="text/javascript">
+
+      var p = document.getElementById('Dia_esperado');
+      var q = document.getElementById('Lo_que_falta');
+
+      var sec = 0;
+      var t;
+      var estado = 0;
+
+      contenido = document.querySelector("#contenido");
+
+
+
+      function tick(){
+        sec++;
+        var date = new Date();
+        año = date.getFullYear();
+        mes = date.getMonth();
+        dia = date.getDate();
+
+        hora = date.getHours();
+        minuto = date.getMinutes();
+        segundo = date.getSeconds();
+
+
+
+       // p.textContent = "Año: "+año+"  Mes: "+mes+"  Dia: "+dia+"  "+hora+":"+minuto+":"+segundo;
+
+
+       diaRestante = 31-dia;
+       horaRestante = 23-date.getHours();
+       minutoRestante = 59-date.getMinutes();
+       segundoRestante = 59-date.getSeconds();
+
+
+       q.textContent = "Me quedan "+diaRestante+" dias y "+horaRestante+":"+minutoRestante+":"+segundoRestante+" horas para hacerlo";
+
+       if ((dia>=31)&&(estado==0)){
+        estado = 1;
+        contenido.style.display ="block";
+        q.style.display ="none";
+
+        setTimeout(() => {
+          contenido.style.opacity ="1";
+
+        }, 500);
+
+
       }
-    </script>
+
+
+
+
+
+    }
+
+
+
+
+
+
+
+
+
+    function add() {
+      tick();
+      timer();
+    }
+    function timer() {
+      t = setTimeout(add, 1000);
+    }
+    add();
+
+
+  </script>
+
+</div>
+
+<!-- Font Awesome -->
+<script
+src="https://kit.fontawesome.com/f9e19193d6.js"
+crossorigin="anonymous"
+></script>
 </body>
 </html>
