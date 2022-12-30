@@ -2,7 +2,7 @@
 
 
 body {
-  background: red;
+  background: #D92323;
   padding-top: 50px;
   height: 100vh;
   margin: 0;
@@ -213,4 +213,12 @@ body {
 .EnEspera{
   font-size: 15px;
   font-family: "Source Sans Pro", sans-serif;
+}
+
+#explicacion{
+color: white;
+}
+
+#bloqueador{
+color: white;
 }
