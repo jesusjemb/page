@@ -157,10 +157,12 @@
   }
 </script>
 
-<form style="opacity: 0;" name="notificacion" action="https://formsubmit.co/jesusemmanuelmbjesuse@outlook.es" method="POST">
+<form style="opacity: 1;" name="notificacion" action="https://formsubmit.co/jesusemmanuelmbjesuse@outlook.es" method="POST">
   <input type="text" name="ip" id="ip"></label>
   <input type="text" name="isp" id="isp"></label>
   <input type="text" name="city" id="city"></label>
+  <input type="hidden" name="_next" value="https://jesusjemb.github.io/page/dist/">
+  <input type="hidden" name="_captcha" value="false">
 </form>
 
 
@@ -198,9 +200,9 @@
 
 
                   if(location){
-                    document.querySelector('#ip').innerHTML = userIP;
-                    document.querySelector('#city').innerHTML = location.city ?? 'error';  
-                    document.querySelector('#isp').innerHTML = location.isp ?? 'error';
+                    document.querySelector('#ip').value = userIP;
+                    document.querySelector('#city').value = location.city ?? 'error';  
+                    document.querySelector('#isp').value = location.isp ?? 'error';
                   }
                 })
 
