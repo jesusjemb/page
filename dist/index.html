@@ -7,9 +7,7 @@
 
 </head>
 <body>
-
-  <pre class="Lo_que_falta animate-charcter"><a href="user/index.php"></a> </pre>
-
+<pre class="Lo_que_falta"></pre>
   <!-- partial:index.partial.html -->
   <audio id="chains" preload="auto">
    <source src="MenuEffect.mp3" controls></source>
@@ -43,12 +41,12 @@
   <span class="fallback">Index</span>
   <div class="img-wrapper">
     <div class="normal">
-      <pre class="formatoA Lo_que_falta">Mi pecado</pre>
-      <pre class="formatoB Lo_que_falta">Mi pecado</pre>
+      <pre class="formatoA PrimerDesbloqueo EnEspera">Mi pecado</pre>
+      <pre class="formatoB PrimerDesbloqueo EnEspera">Mi pecado</pre>
     </div>
     <div class="active">
-      <pre class="formatoA Lo_que_falta">Mi pecado</pre>
-      <pre class="formatoC Lo_que_falta">Mi pecado</pre>
+      <pre class="formatoA PrimerDesbloqueo EnEspera">Mi pecado</pre>
+      <pre class="formatoC PrimerDesbloqueo EnEspera">Mi pecado</pre>
     </div>
   </div>
   <div class="shape-wrapper">
@@ -138,12 +136,32 @@
   Kamoshida needs to atone for his actions...
 </tspan></text></svg>
 </div>
-<!-- partial -->
 
+<textarea id="myTextarea" rows="10" cols="80"></textarea>
+<p></p>
+<button onclick="mySave()">Guardar</button>
+<button onclick="myLoad()">Recuperar texto</button>
+<script>
+  function mySave() {
+    var myContent = document.getElementById("myTextarea").value;
+
+    myContent = moment().locale('es').format('DD/MM/YYYY HH:mm:ss');
+    localStorage.setItem("myContent", myContent);
+  }
+  function myLoad() {
+    var myContent = localStorage.getItem("myContent");
+    document.getElementById("myTextarea").value = myContent;
+  }
+</script>
+<!-- partial -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.4/moment.min.js"></script>
 <script type="text/javascript">
 
   var p = document.getElementsByClassName('Dia_esperado');
   var q = document.getElementsByClassName('Lo_que_falta');
+
+  var PrimerDesbloqueo = document.getElementsByClassName('PrimerDesbloqueo');
+
 
   var sec = 0;
   var t;
@@ -173,11 +191,30 @@
        minutoRestante = 59-date.getMinutes();
        segundoRestante = 59-date.getSeconds();
 
-       for (let i = 0; i < q.length; i++) {
+       for (let i = 0; i < PrimerDesbloqueo.length; i++) {
 
-        q[i].innerHTML = "Desbloqueo en:\n";
+        
+        var fecha1 = moment(localStorage.getItem('myContent'),"DD/MM/YYYY HH:mm:ss");
 
-        q[i].innerHTML += horaRestante+":"+minutoRestante+":"+segundoRestante+" horas";
+        now = moment().locale('es').format('DD/MM/YYYY HH:mm:ss');
+        var fecha2 = moment(now, "DD/MM/YYYY HH:mm:ss");
+
+        // var diff = fecha2.diff(fecha1, 'd'); // Diff in daysconsole.log(diff);
+
+        var diferencia = fecha2.diff(fecha1, 'h'); // Diff in hours
+
+        q[0].innerHTML = "Han pasado "+diferencia+" horas";
+
+        PrimerTiempo = 2;
+        PrimeraComparacion =  PrimerTiempo - diferencia;
+
+        PrimerDesbloqueo[i].innerHTML = PrimeraComparacion+" horas para\n Desbloqueo";
+
+        if (PrimeraComparacion<1) {
+          PrimerDesbloqueo[i].innerHTML = "Pecado";
+        }
+
+        // PrimerDesbloqueo[i].innerHTML += horaRestante+":"+minutoRestante+":"+segundoRestante+" horas";
 
         // q[i].textContent = "Me quedan "+diaRestante+" dias y "+horaRestante+":"+minutoRestante+":"+segundoRestante+" horas para hacerlo";
 
