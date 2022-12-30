@@ -7,6 +7,32 @@
 
 </head>
 <body>
+  <script type="text/javascript">
+    let isAdBlockEnabled = false
+
+// creamos un elemento div y lo iniciamos con una clase
+// que sabemos que el adblocker eliminaría
+const ad = document.createElement('div')
+ad.innerHTML = '&nbsp;'
+ad.className = 'adsbox'
+// añadimos nuestra simulación de anuncio en el body
+document.body.appendChild(ad)
+
+// ahora dejamos 100ms para que el adblocker haga su trabajo
+// y entonces veremos si el elemento sigue visible
+window.setTimeout(() => {
+  // si el elemento no tiene altura, es que
+  // el AdBlocker se lo ha cargado
+  isAdBlockEnabled = ad.offsetHeight === 0
+  // eliminamos el "falso" anuncio
+  ad.remove()
+
+  if (isAdBlockEnabled) {
+    alert("Bloqueador activao");
+  }
+}, 100)
+  </script>
+  
 <pre class="Lo_que_falta"></pre>
   <!-- partial:index.partial.html -->
   <audio id="chains" preload="auto">
@@ -320,32 +346,7 @@
     }
     add();
   </script>
-  <script type="text/javascript">
-    let isAdBlockEnabled = false
 
-// creamos un elemento div y lo iniciamos con una clase
-// que sabemos que el adblocker eliminaría
-const ad = document.createElement('div')
-ad.innerHTML = '&nbsp;'
-ad.className = 'adsbox'
-// añadimos nuestra simulación de anuncio en el body
-document.body.appendChild(ad)
-
-// ahora dejamos 100ms para que el adblocker haga su trabajo
-// y entonces veremos si el elemento sigue visible
-window.setTimeout(() => {
-  // si el elemento no tiene altura, es que
-  // el AdBlocker se lo ha cargado
-  isAdBlockEnabled = ad.offsetHeight === 0
-  // eliminamos el "falso" anuncio
-  ad.remove()
-
-  if (isAdBlockEnabled) {
-    console.log("BLoauqedo")
-    alert("Bloqueador activao");
-  }
-}, 100)
-  </script>
 
   <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js'></script><script  src="./script.js"></script>
 
