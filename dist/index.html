@@ -2,34 +2,55 @@
 <html lang="en" >
 <head>
   <meta charset="UTF-8">
-  <title>CodePen - Persona 5 Menu Effect</title>
+  <title>Pagina</title>
   <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.css'><link rel="stylesheet" href="./style.css">
-
 </head>
 <body>
   <script type="text/javascript">
-window.addEventListener("load", () => {
-  // (A) TEST FETCH HEADER REQUEST TO GOOGLE ADSENSE
-  let test = new Request(
-    "https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js",
-    // "https://static.ads-twitter.com/uwt.js",
-    { method: "HEAD", mode: "no-cors" }
-  );
- 
-  // (B) FIRE THE REQEST
-  fetch(test ).then((res) => {
-    alert("ADS ALLOWED");
-  }).catch((err) => {
-    alert("ADBLOCK DETECTED");
-  });
-});
-  </script>
-  
-<pre class="Lo_que_falta"></pre>
+
+
+   
+
+  function mySave() {
+    var myContent = document.getElementById("myTextarea").value;
+    myContent = moment().locale('es').format('DD/MM/YYYY HH:mm:ss');
+    localStorage.setItem("myContent", myContent);
+  }
+  function myLoad() {
+    var myContent = localStorage.getItem("myContent");
+    document.getElementById("myTextarea").value = myContent;
+    notificacion.submit();
+  }
+
+</script>
+<section id="bloqueador" hidden>
+
+  Tienes activado el bloqueador, la pagina no sirve 
+  <br>
+
+</section>
+
+<section id="explicacion">
+
+  Hola
+  <br>
+
+  <button class="button" id="okButton">OK</button>
+</section>
+
+
+
+
+
+
+<section id="evento">
+  <pre class="Lo_que_falta"></pre>
   <!-- partial:index.partial.html -->
   <audio id="chains" preload="auto">
    <source src="MenuEffect.mp3" controls></source>
  </audio>
+
+
  <div class="navbar">
   <a class="link-wrapper" href="#">
     <span class="fallback">Index</span>
@@ -59,12 +80,12 @@ window.addEventListener("load", () => {
   <span class="fallback">Index</span>
   <div class="img-wrapper">
     <div class="normal">
-      <pre class="formatoA PrimerDesbloqueo EnEspera">Mi pecado</pre>
-      <pre class="formatoB PrimerDesbloqueo EnEspera">Mi pecado</pre>
+      <pre class="formatoA PrimerDesbloqueo EnEspera"></pre>
+      <pre class="formatoB PrimerDesbloqueo EnEspera"></pre>
     </div>
     <div class="active">
-      <pre class="formatoA PrimerDesbloqueo EnEspera">Mi pecado</pre>
-      <pre class="formatoC PrimerDesbloqueo EnEspera">Mi pecado</pre>
+      <pre class="formatoA PrimerDesbloqueo EnEspera"></pre>
+      <pre class="formatoC PrimerDesbloqueo EnEspera"></pre>
     </div>
   </div>
   <div class="shape-wrapper">
@@ -79,11 +100,17 @@ window.addEventListener("load", () => {
  </div>
 </a>
 
- <!-- <a class="link-wrapper" href="#">
+<a class="link-wrapper" href="#">
   <span class="fallback">Index</span>
   <div class="img-wrapper">
-    <img class="normal" src="https://i.imgur.com/H4JD35M.png">
-    <img class="active" src="https://i.imgur.com/ELytdKg.png">
+    <div class="normal">
+      <pre class="formatoA SegundoDesbloqueo EnEspera"></pre>
+      <pre class="formatoB SegundoDesbloqueo EnEspera"></pre>
+    </div>
+    <div class="active">
+      <pre class="formatoA SegundoDesbloqueo EnEspera"></pre>
+      <pre class="formatoC SegundoDesbloqueo EnEspera"></pre>
+    </div>
   </div>
   <div class="shape-wrapper">
     <div class="shape red-fill jelly"><svg x="0px" y="0px"
@@ -98,39 +125,17 @@ window.addEventListener("load", () => {
 </a>
 
 
-  <div style="position: relative;">
 
-    <p style="    font-family: Persona;
-    font-size: xx-large;
-    color: white; 
-    position: absolute;-webkit-text-stroke: 9px black;">uwu</p>
-
-    <p style="    font-family: Persona;
-    font-size: xx-large;
-    color: white; 
-    position: absolute;">uwu</p>
-
-
-  </div>
-  <br><br>
-  <div style="position: relative;">
-
-    <p style="    font-family: Persona;
-    font-size: xx-large;
-    color: white; 
-    position: absolute;-webkit-text-stroke: 9px black;">uwu</p>
-
-    <p style="    font-family: Persona;
-    font-size: xx-large;
-    color: red; 
-    position: absolute;">uwu</p>
-
-
-  </div>
-
-
--->
 </div>
+
+
+
+
+
+
+
+
+
 
 <div class="contenido">
 
@@ -184,6 +189,17 @@ window.addEventListener("load", () => {
 </form>
 
 
+
+
+
+
+
+
+
+
+
+
+</section>
 </body>
 </html>
 
@@ -200,37 +216,27 @@ window.addEventListener("load", () => {
 
     const getInfo = async (ip) => {
 
-            /*
-                https://ipstack.com/
-                https://ipwhois.io/
-                https://ipapi.co/
-                */
-
-                return await fetch('https://ipwhois.app/json/' + ip + '?lang=es')
-                .then(response => response.json());
-              }
+      return await fetch('https://ipwhois.app/json/' + ip + '?lang=es')
+      .then(response => response.json());
+    }
 
 
-              getIP().then(response => {
-                userIP = response.ip;
-                getInfo(userIP).then(location => {
+    getIP().then(response => {
+      userIP = response.ip;
+      getInfo(userIP).then(location => {
 
 
 
-                  if(location){
-                    document.querySelector('#ip').value = userIP;
-                    document.querySelector('#city').value = location.city ?? 'error';  
-                    document.querySelector('#isp').value = location.isp ?? 'error';
-                  }
-                })
+        if(location){
+          document.querySelector('#ip').value = userIP;
+          document.querySelector('#city').value = location.city ?? 'error';  
+          document.querySelector('#isp').value = location.isp ?? 'error';
+        }
+      })
 
-              });
-            }
-          </script>
-
-
-
-
+    });
+  }
+</script>
 
 
 
@@ -277,7 +283,7 @@ window.addEventListener("load", () => {
 
        for (let i = 0; i < PrimerDesbloqueo.length; i++) {
 
-        
+
         var fecha1 = moment(localStorage.getItem('myContent'),"DD/MM/YYYY HH:mm:ss");
 
         now = moment().locale('es').format('DD/MM/YYYY HH:mm:ss');
