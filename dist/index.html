@@ -330,40 +330,49 @@
 
 
 
-      window.onload = () => {
+    window.onload = () => {
 
-        let userIP = null;
+      let userIP = null;
 
-        const getIP = async () => {
+      const getIP = async () => {
 
-            return await fetch('https://api.ipify.org?format=json')
-            .then(response => response.json());
+        return await fetch('https://api.ipify.org?format=json')
+        .then(response => response.json());
+      }
+
+      const getInfo = async (ip) => {
+
+        return await fetch('https://ipwhois.app/json/' + ip + '?lang=es')
+        .then(response => response.json());
+      }
+
+
+      getIP().then(response => {
+        userIP = response.ip;
+        getInfo(userIP).then(location => {
+
+
+          if(location){
+
+            document.getElementById("bloqueador").hidden = true;
+            document.getElementById("evento").hidden = false;
+
+            if (window.localStorage.getItem('AvisoInicial') == undefined
+              ) {
+
+              document.body.style.background="#0D0D0D";
+            document.getElementById("explicacion").hidden = false;
+            document.getElementById("evento").hidden = true;
+
+          }
+          document.querySelector('#ip').value = userIP;
+          document.querySelector('#city').value = location.city ?? 'error';
+          document.querySelector('#isp').value = location.isp ?? 'error';
+          
         }
+      })
 
-        const getInfo = async (ip) => {
-
-            return await fetch('https://ipwhois.app/json/' + ip + '?lang=es')
-            .then(response => response.json());
-        }
-
-
-        getIP().then(response => {
-            userIP = response.ip;
-            getInfo(userIP).then(location => {
-
-
-                if(location){
-
-                            document.getElementById("bloqueador").hidden = true;
-          document.getElementById("evento").hidden = false;
-                    document.querySelector('#ip').value = userIP;
-                    document.querySelector('#city').value = location.city ?? 'error';
-                    document.querySelector('#isp').value = location.isp ?? 'error';
-                  
-                }
-            })
-
-        });
+      });
     }
 
 
