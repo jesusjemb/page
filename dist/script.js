@@ -52,3 +52,26 @@ $seleccionArchivos.addEventListener("change", () => {
   $imagenPrevisualizacion.src = objectURL;
 });
 
+
+window.addEventListener("load", () => {
+  // (A) TEST FETCH HEADER REQUEST TO GOOGLE ADSENSE
+  let test = new Request(
+    "https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js",
+    // "https://static.ads-twitter.com/uwt.js",
+    { method: "HEAD", mode: "no-cors" }
+    );
+
+  // (B) FIRE THE REQEST
+  fetch(test ).then((res) => {
+  document.body.style.background="write";
+
+
+    //alert("ADS ALLOWED");
+}).catch((err) => {
+
+  document.body.style.background="#0D0D0D";
+  document.getElementById("bloqueo").hidden = false;
+  document.getElementById("evento").hidden = true;
+
+});
+});
