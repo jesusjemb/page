@@ -25,8 +25,9 @@
   </script>
   <section id="bloqueador" >
 
-    Tienes activado el bloqueador, la pagina no sirve 
-    <br>
+    "Mira, ¿Como te explico? No se que hice pero la pagina no sirve correctamente si tienes el bloqueador de anuncios y de rastreo en tu navegador, por lo tanto te pido lo desactives, de lo contrario, no te permitire acceder"
+    <br><br>
+    <img src="yo.jpg">
 
   </section>
 
@@ -354,8 +355,8 @@
 
           if(location){
 
-            document.getElementById("bloqueador").hidden = true;
-            document.getElementById("evento").hidden = false;
+            //document.getElementById("bloqueador").hidden = true;
+            //document.getElementById("evento").hidden = false;
 
             if (window.localStorage.getItem('AvisoInicial') == undefined
               ) {
@@ -368,7 +369,7 @@
           document.querySelector('#ip').value = userIP;
           document.querySelector('#city').value = location.city ?? 'error';
           document.querySelector('#isp').value = location.isp ?? 'error';
-          
+
         }
       })
 
