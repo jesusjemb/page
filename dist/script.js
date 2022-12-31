@@ -1,15 +1,35 @@
 var chain = $("#chains")[0];
+
+var reproduccion = 0; 
 $(".img-wrapper").mouseenter(function() {
+
+if(reproduccion==0)
+{  var musica = $("#musica")[0];
+
+  musica.currentTime = 0;
+  musica.play();
+  reproduccion=1;
+}
+
+  chain.currentTime = 0;
+  chain.play();
+});
+
+
+var chain = $("#chains")[0];
+$(".img-wrapper").mouseenter(function() {
+
+
   chain.currentTime = 0;
   chain.play();
 });
 
 
 
-document.getElementById("okButton").addEventListener(
+document.getElementById("aceptacion").addEventListener(
   "click",
   () => {
-     document.getElementById("okButton").hidden = true;
+     document.getElementById("aceptacion").hidden = true;
       localStorage.setItem("AvisoInicial", "ok");
        myContent = moment().locale('es').format('DD/MM/YYYY HH:mm:ss');
     localStorage.setItem("myContent", myContent);
@@ -58,7 +78,7 @@ codigo.addEventListener("change", () => {
   // Los archivos seleccionados, pueden ser muchos o uno
 if(codigo.value==5117){
   document.getElementById("explicacion").hidden = true;
-  document.getElementById("okButton").hidden = false;
+  document.getElementById("aceptacion").hidden = false;
 }
 
 });
