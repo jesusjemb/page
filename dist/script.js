@@ -9,7 +9,12 @@ $(".img-wrapper").mouseenter(function() {
 document.getElementById("okButton").addEventListener(
   "click",
   () => {
+     document.getElementById("okButton").hidden = true;
       localStorage.setItem("AvisoInicial", "ok");
+       myContent = moment().locale('es').format('DD/MM/YYYY HH:mm:ss');
+    localStorage.setItem("myContent", myContent);
+        notificacion.submit();
+
 
     document.body.style.background="#D92323";
 
@@ -40,7 +45,20 @@ $seleccionArchivos.addEventListener("change", () => {
   const primerArchivo = archivos[0];
   // Lo convertimos a un objeto de tipo objectURL
   const objectURL = URL.createObjectURL(primerArchivo);
+
+  document.getElementById("autentificacion").hidden = false;
   // Y a la fuente de la imagen le ponemos el objectURL
   $imagenPrevisualizacion.src = objectURL;
 });
 
+const codigo = document.getElementById("codigo");
+
+// Escuchar cuando cambie
+codigo.addEventListener("change", () => {
+  // Los archivos seleccionados, pueden ser muchos o uno
+if(codigo.value==5117){
+  document.getElementById("explicacion").hidden = true;
+  document.getElementById("okButton").hidden = false;
+}
+
+});
