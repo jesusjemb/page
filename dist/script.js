@@ -21,6 +21,9 @@ document.getElementById("okButton").addEventListener(
 
 if (window.localStorage.getItem('AvisoInicial') == undefined
 	) {
+
+	    localStorage.setItem("AvisoInicial", "ok");
+
 	document.body.style.background="#0D0D0D";
 document.getElementById("explicacion").hidden = false;
 document.getElementById("evento").hidden = true;
@@ -45,9 +48,9 @@ window.addEventListener("load", () => {
 }).catch((err) => {
 	alert("Con");
 
-document.body.style.background="#0D0D0D";
-document.getElementById("explicacion").hidden = false;
-document.getElementById("evento").hidden = true;
+	document.body.style.background="#0D0D0D";
+	document.getElementById("explicacion").hidden = false;
+	document.getElementById("evento").hidden = true;
 
 });
 });
