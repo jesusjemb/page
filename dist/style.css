@@ -13,8 +13,9 @@ hr {
 }
 
 .navbar {
-  text-align: center;
-  margin-top: 18px;
+display: flex;
+    text-align: center;
+    margin-top: 18px;
 }
 
 .link-wrapper {
