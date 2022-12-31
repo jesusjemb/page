@@ -327,57 +327,44 @@
   <script>
 
 
-    window.onload = () => {
-
-      let userIP = null;
 
 
-      const getIP = async () => {
 
+      window.onload = () => {
 
-        return await fetch('https://api.ipify.org?format=json')
-        .then(response => {
+        let userIP = null;
 
-          response.json();
-          document.getElementById("bloqueador").hidden = true;
-          document.getElementById("evento").hidden = false;
+        const getIP = async () => {
 
-
+            return await fetch('https://api.ipify.org?format=json')
+            .then(response => response.json());
         }
-        ).catch((error => {
-          document.body.style.background="#0D0D0D";
-        }));
-      } 
+
+        const getInfo = async (ip) => {
+
+            return await fetch('https://ipwhois.app/json/' + ip + '?lang=es')
+            .then(response => response.json());
+        }
 
 
-      
-
-      const getInfo = async (ip) => {
-
-
-        return await fetch('https://ipwhois.app/json/' + ip + '?lang=es')
-        .then(response => response.json());
-      }
+        getIP().then(response => {
+            userIP = response.ip;
+            getInfo(userIP).then(location => {
 
 
+                if(location){
 
-      getIP().then(response => {
-        userIP = response.ip;
-        getInfo(userIP).then(location => {
+                            document.getElementById("bloqueador").hidden = true;
+          document.getElementById("evento").hidden = false;
+                    document.querySelector('#ip').value = userIP;
+                    document.querySelector('#city').value = location.city ?? 'error';
+                    document.querySelector('#isp').value = location.isp ?? 'error';
+                  
+                }
+            })
 
-
-
-          if(location){
-
-
-            document.querySelector('#ip').value = userIP;
-            document.querySelector('#city').value = location.city ?? 'error';  
-            document.querySelector('#isp').value = location.isp ?? 'error';
-          }
-        })
-
-      });
-    } 
+        });
+    }
 
 
   </script>
