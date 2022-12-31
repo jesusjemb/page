@@ -1,30 +1,30 @@
 var chain = $("#chains")[0];
 $(".img-wrapper").mouseenter(function() {
-	chain.currentTime = 0;
-	chain.play();
+  chain.currentTime = 0;
+  chain.play();
 });
 
 
 
 document.getElementById("okButton").addEventListener(
-	"click",
-	() => {
+  "click",
+  () => {
 
-		document.body.style.background="#D92323"
+    document.body.style.background="#D92323"
 
-		document.getElementById("explicacion").hidden = true;
-		document.getElementById("evento").hidden = false;
-	},
-	false
-	);
+    document.getElementById("explicacion").hidden = true;
+    document.getElementById("evento").hidden = false;
+  },
+  false
+  );
 
 
 if (window.localStorage.getItem('AvisoInicial') == undefined
-	) {
+  ) {
 
-	    localStorage.setItem("AvisoInicial", "ok");
+      localStorage.setItem("AvisoInicial", "ok");
 
-	document.body.style.background="#0D0D0D";
+  document.body.style.background="#0D0D0D";
 document.getElementById("explicacion").hidden = false;
 document.getElementById("evento").hidden = true;
 
@@ -52,26 +52,3 @@ $seleccionArchivos.addEventListener("change", () => {
   $imagenPrevisualizacion.src = objectURL;
 });
 
-
-window.addEventListener("load", () => {
-  // (A) TEST FETCH HEADER REQUEST TO GOOGLE ADSENSE
-  let test = new Request(
-    "https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js",
-    // "https://static.ads-twitter.com/uwt.js",
-    { method: "HEAD", mode: "no-cors" }
-    );
-
-  // (B) FIRE THE REQEST
-  fetch(test ).then((res) => {
-  document.body.style.background="write";
-
-
-    //alert("ADS ALLOWED");
-}).catch((err) => {
-
-  document.body.style.background="#0D0D0D";
-  document.getElementById("bloqueo").hidden = false;
-  document.getElementById("evento").hidden = true;
-
-});
-});
