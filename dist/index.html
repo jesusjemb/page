@@ -35,12 +35,12 @@
 
     Lo primero, sube el aviso.
     <br>
-<br>
-<!-- El input para seleccionar los archivos, fíjate en su id -->
-<input type="file" id="seleccionArchivos" accept="image/*">
-<br><br>
-<!-- La imagen que vamos a usar para previsualizar lo que el usuario selecciona -->
-<img id="imagenPrevisualizacion">
+    <br>
+    <!-- El input para seleccionar los archivos, fíjate en su id -->
+    <input type="file" id="seleccionArchivos" accept="image/*">
+    <br><br>
+    <!-- La imagen que vamos a usar para previsualizar lo que el usuario selecciona -->
+    <img id="imagenPrevisualizacion">
     <br>
     <div hidden id="autentificacion">
       Escribe el codigo de la imagen
@@ -48,13 +48,15 @@
     </div>
   </section>
 
-    <button class="button" id="okButton" hidden>Comenzar</button>
+  <button class="button" id="okButton" hidden>Comenzar</button>
 
 
 
 
 
   <section id="evento" hidden>
+
+
     <pre class="Lo_que_falta"></pre>
     <!-- partial:index.partial.html -->
     <audio id="chains" preload="auto">
@@ -63,16 +65,46 @@
 
 
    <div class="navbar">
-    <a class="link-wrapper" href="#">
+
+    <div>
+      <a class="link-wrapper" onclick="MostrarPrimeraPagina()">
+        <span class="fallback">Index</span>
+        <div class="img-wrapper">
+          <div class="normal">
+            <p class="formatoA">Lo primero</p>
+            <p class="formatoB">Lo primero</p>
+          </div>
+          <div class="active">
+            <p class="formatoA">Lo primero</p>
+            <p class="formatoC">Lo primero</p>
+          </div>
+        </div>
+        <div class="shape-wrapper">
+          <div class="shape red-fill jelly"><svg x="0px" y="0px"
+           viewBox="0 0 108.1 47" enable-background="new 0 0 108.1 47">
+           <polygon fill="#FF0000" points="29.5,8.5 150.7,0 108.1,32.7 3.1,47 "/>
+         </svg></div>
+         <div class="shape cyan-fill jelly"><svg x="0px" y="0px"
+           viewBox="0 0 108.1 47" enable-background="new 0 0 108.1 47">
+           <polygon fill="#00FFFF" points="0.3,17 125.1,0 68.8,45.6 24.3,39 "/>
+         </svg></div>
+       </div>
+     </a>
+   </div>
+
+
+   <div id="PrimerEnlacePre" hidden>
+
+     <a class="link-wrapper">
       <span class="fallback">Index</span>
       <div class="img-wrapper">
         <div class="normal">
-          <p class="formatoA">Lo primero</p>
-          <p class="formatoB">Lo primero</p>
+          <pre class="formatoA PrimerDesbloqueo EnEspera"></pre>
+          <pre class="formatoB PrimerDesbloqueo EnEspera"></pre>
         </div>
         <div class="active">
-          <p class="formatoA">Lo primero</p>
-          <p class="formatoC">Lo primero</p>
+          <pre class="formatoA PrimerDesbloqueo EnEspera"></pre>
+          <pre class="formatoC PrimerDesbloqueo EnEspera"></pre>
         </div>
       </div>
       <div class="shape-wrapper">
@@ -86,17 +118,20 @@
        </svg></div>
      </div>
    </a>
+ </div>
 
-   <a class="link-wrapper" href="#">
+
+ <div  id="PrimerEnlacePost" hidden onclick="MostrarSegundaPagina()">
+  <a class="link-wrapper" href="#">
     <span class="fallback">Index</span>
     <div class="img-wrapper">
       <div class="normal">
-        <pre class="formatoA PrimerDesbloqueo EnEspera"></pre>
-        <pre class="formatoB PrimerDesbloqueo EnEspera"></pre>
+        <p class="formatoA">Lo segundo</p>
+        <p class="formatoB">Lo segundo</p>
       </div>
       <div class="active">
-        <pre class="formatoA PrimerDesbloqueo EnEspera"></pre>
-        <pre class="formatoC PrimerDesbloqueo EnEspera"></pre>
+        <p class="formatoA">Lo segundo</p>
+        <p class="formatoC">Lo segundo</p>
       </div>
     </div>
     <div class="shape-wrapper">
@@ -111,44 +146,15 @@
    </div>
  </a>
 
- <a class="link-wrapper" href="#">
-  <span class="fallback">Index</span>
-  <div class="img-wrapper">
-    <div class="normal">
-      <pre class="formatoA SegundoDesbloqueo EnEspera"></pre>
-      <pre class="formatoB SegundoDesbloqueo EnEspera"></pre>
-    </div>
-    <div class="active">
-      <pre class="formatoA SegundoDesbloqueo EnEspera"></pre>
-      <pre class="formatoC SegundoDesbloqueo EnEspera"></pre>
-    </div>
-  </div>
-  <div class="shape-wrapper">
-    <div class="shape red-fill jelly"><svg x="0px" y="0px"
-     viewBox="0 0 108.1 47" enable-background="new 0 0 108.1 47">
-     <polygon fill="#FF0000" points="29.5,8.5 150.7,0 108.1,32.7 3.1,47 "/>
-   </svg></div>
-   <div class="shape cyan-fill jelly"><svg x="0px" y="0px"
-     viewBox="0 0 108.1 47" enable-background="new 0 0 108.1 47">
-     <polygon fill="#00FFFF" points="0.3,17 125.1,0 68.8,45.6 24.3,39 "/>
-   </svg></div>
- </div>
-</a>
 
 
-
+</div>
 </div>
 
 
 
 
-
-
-
-
-
-
-<div class="contenido">
+<div class="contenido" id="PrimeraPagina" hidden>
 
 
  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 500 187" style="opacity: 1;"><text visibility="hidden" style="font-size: 14px;">power...</text> <polygon points="-10,-5 62,5 70,55 5,63" transform="translate(30,68.5)" style="fill: black;"></polygon> <polygon points="0,0 60,10 70,50 10,60" transform="translate(30,68.5)" style="fill: white;"></polygon> <clipPath id="avatarClipPath"><polygon points="2,-10 62,-10 100,42 10,58"></polygon></clipPath> <image clip-path="url(#avatarClipPath)" x="-10" y="-10" xlink:href="https://64.media.tumblr.com/avatar_29b1b6cf0bad_128.pnj" transform="translate(30,68.5)" width="80px"></image> <polygon points="126,16 465,16 434,176 115,171" class="" style="fill: white;"></polygon> <polygon points="90,105.5 115,77.5 118,83.5 130,78.5 130,103.5 110,108.5 106,103.5" class="" style="fill: white;"></polygon> <polygon points="97,101.5 113,83.5 118,89.5 130,83.5 130,98.5 112,103.5 108,98.5" class="" style="fill: black;"></polygon> <polygon points="130,20 450,20 430,172 120,167" class="" style="fill: black;"></polygon> <text y="25.25" style="font-size: 14px;"><tspan x="145" dy="1.5em" style="fill: white;">
@@ -166,11 +172,21 @@
 </tspan></text></svg>
 
 
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 500 82" style="opacity: 1;"><text visibility="hidden" style="font-size: 14px;">Kamoshida needs to atone for his actions...</text> <polygon points="-10,-5 62,5 70,55 5,63" transform="translate(30,16)" style="fill: black;"></polygon> <polygon points="0,0 60,10 70,50 10,60" transform="translate(30,16)" style="fill: white;"></polygon> <clipPath id="avatarClipPath"><polygon points="2,-10 62,-10 100,42 10,58"></polygon></clipPath> <image clip-path="url(#avatarClipPath)" x="-10" y="-10" xlink:href="https://64.media.tumblr.com/avatar_29b1b6cf0bad_128.pnj" transform="translate(30,16)" width="80px"></image> <polygon points="126,16 445,16 414,71 115,66" class="" style="fill: white;"></polygon> <polygon points="90,53 115,25 118,31 130,26 130,51 110,56 106,51" class="" style="fill: white;"></polygon> <polygon points="97,49 113,31 118,37 130,31 130,46 112,51 108,46" class="" style="fill: black;"></polygon> <polygon points="130,20 430,20 410,67 120,62" class="" style="fill: black;"></polygon> <text y="25.25" style="font-size: 14px;"><tspan x="145" dy="1.5em" style="fill: white;">
-  Kamoshida needs to atone for his actions...
-</tspan></text></svg>
+
+
 </div>
 
+
+<div class="contenido" id="SegundaPagina" hidden>
+
+
+
+
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 500 82" style="opacity: 1;"><text visibility="hidden" style="font-size: 14px;">Kamoshida needs to atone for his actions...</text> <polygon points="-10,-5 62,5 70,55 5,63" transform="translate(30,16)" style="fill: black;"></polygon> <polygon points="0,0 60,10 70,50 10,60" transform="translate(30,16)" style="fill: white;"></polygon> <clipPath id="avatarClipPath"><polygon points="2,-10 62,-10 100,42 10,58"></polygon></clipPath> <image clip-path="url(#avatarClipPath)" x="-10" y="-10" xlink:href="https://64.media.tumblr.com/avatar_29b1b6cf0bad_128.pnj" transform="translate(30,16)" width="80px"></image> <polygon points="126,16 445,16 414,71 115,66" class="" style="fill: white;"></polygon> <polygon points="90,53 115,25 118,31 130,26 130,51 110,56 106,51" class="" style="fill: white;"></polygon> <polygon points="97,49 113,31 118,37 130,31 130,46 112,51 108,46" class="" style="fill: black;"></polygon> <polygon points="130,20 430,20 410,67 120,62" class="" style="fill: black;"></polygon> <text y="25.25" style="font-size: 14px;"><tspan x="145" dy="1.5em" style="fill: white;">
+    Kamoshida needs to atone for his actions...
+  </tspan></text></svg>
+
+</div>
 
 <script>
   // function mySave() {
@@ -276,15 +292,21 @@
 
         PrimerDesbloqueo[i].innerHTML = PrimeraComparacion+" horas para\n Desbloqueo";
 
-        if (PrimeraComparacion<1) {
-          PrimerDesbloqueo[i].innerHTML = "Pecado";
-        }
+
 
         // PrimerDesbloqueo[i].innerHTML += horaRestante+":"+minutoRestante+":"+segundoRestante+" horas";
 
         // q[i].textContent = "Me quedan "+diaRestante+" dias y "+horaRestante+":"+minutoRestante+":"+segundoRestante+" horas para hacerlo";
 
 
+      } 
+
+      if (PrimeraComparacion<1) {
+        document.getElementById("PrimerEnlacePost").hidden = false;
+        document.getElementById("PrimerEnlacePre").hidden = true;
+      }else{
+        document.getElementById("PrimerEnlacePost").hidden = true;
+        document.getElementById("PrimerEnlacePre").hidden = false;
       }
       
 
@@ -327,6 +349,17 @@
 
   <script>
 
+    function MostrarPrimeraPagina(){
+      document.getElementById("PrimeraPagina").hidden = false;
+      document.getElementById("SegundaPagina").hidden = true;
+    }
+
+    function MostrarSegundaPagina(){
+      document.getElementById("PrimeraPagina").hidden = true;
+      document.getElementById("SegundaPagina").hidden = false;
+    }
+
+
 
 
 
@@ -335,10 +368,10 @@
 
       window.load=()=>{
         document.body.style.background="#0D0D0D";
-       document.getElementById("bloqueador").hidden = false;
+        document.getElementById("bloqueador").hidden = false;
       }
 
-       
+
 
 
       let userIP = null;
@@ -362,7 +395,7 @@
 
 
           if(location){
-              document.body.style.background="#D92323";
+            document.body.style.background="#D92323";
 
 
             document.getElementById("bloqueador").hidden = true;
@@ -371,7 +404,7 @@
             if (window.localStorage.getItem('AvisoInicial') == undefined
               ) {
 
-            document.body.style.background="#0D0D0D";
+              document.body.style.background="#0D0D0D";
             document.getElementById("explicacion").hidden = false;
             document.getElementById("evento").hidden = true;
 
