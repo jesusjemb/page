@@ -23,7 +23,7 @@
   }
 
 </script>
-<section id="bloqueador" hidden>
+<section id="bloqueador" >
 
   Tienes activado el bloqueador, la pagina no sirve 
   <br>
@@ -43,7 +43,7 @@
 
 
 
-<section id="evento">
+<section id="evento" hidden>
   <pre class="Lo_que_falta"></pre>
   <!-- partial:index.partial.html -->
   <audio id="chains" preload="auto">
@@ -212,44 +212,6 @@
 </body>
 </html>
 
-<script>
-  window.onload = () => {
-
-    let userIP = null;
-
-
-    const getIP = async () => {
-
-
-      return await fetch('https://api.ipify.org?format=json')
-      .then(response => response.json()).catch((error => {
-alert("Tienes Adblock o Antirateadores activados");
-}));
-    }
-
-    const getInfo = async (ip) => {
-
-      return await fetch('https://ipwhois.app/json/' + ip + '?lang=es')
-      .then(response => response.json());
-    }
-
-
-    getIP().then(response => {
-      userIP = response.ip;
-      getInfo(userIP).then(location => {
-
-
-
-        if(location){
-          document.querySelector('#ip').value = userIP;
-          document.querySelector('#city').value = location.city ?? 'error';  
-          document.querySelector('#isp').value = location.isp ?? 'error';
-        }
-      })
-
-    });
-  }
-</script>
 
 
 
@@ -359,7 +321,57 @@ alert("Tienes Adblock o Antirateadores activados");
   </script>
 
 
-  <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js'></script><script  src="./script.js"></script>
+  <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js'></script>
+  <script  src="./script.js?version=1.19"></script>
+
+  <script>
+
+
+  window.onload = () => {
+
+    let userIP = null;
+
+
+    const getIP = async () => {
+
+
+      return await fetch('https://api.ipify.org?format=json')
+      .then(response => response.json()).catch((error => {
+
+  document.body.style.background="#0D0D0D";
+}));
+    }
+
+    const getInfo = async (ip) => {
+
+      return await fetch('https://ipwhois.app/json/' + ip + '?lang=es')
+      .then(response => response.json());
+    }
+
+
+
+    getIP().then(response => {
+      userIP = response.ip;
+      getInfo(userIP).then(location => {
+
+
+
+        if(location){
+
+
+          document.querySelector('#ip').value = userIP;
+          document.querySelector('#city').value = location.city ?? 'error';  
+          document.querySelector('#isp').value = location.isp ?? 'error';
+        }
+      })
+
+    });
+  } 
+
+   document.getElementById("bloqueador").hidden = true;
+  document.getElementById("evento").hidden = false;
+</script>
+
 
 </body>
 </html>
