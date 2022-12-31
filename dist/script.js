@@ -9,6 +9,7 @@ $(".img-wrapper").mouseenter(function() {
 document.getElementById("okButton").addEventListener(
   "click",
   () => {
+      localStorage.setItem("AvisoInicial", "ok");
 
     document.body.style.background="#D92323";
 
@@ -21,8 +22,6 @@ document.getElementById("okButton").addEventListener(
 
 if (window.localStorage.getItem('AvisoInicial') == undefined
   ) {
-
-      localStorage.setItem("AvisoInicial", "ok");
 
   document.body.style.background="#0D0D0D";
 document.getElementById("explicacion").hidden = false;
