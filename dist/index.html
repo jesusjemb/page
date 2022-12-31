@@ -19,10 +19,8 @@ window.addEventListener("load", () => {
   // (B) FIRE THE REQEST
   fetch(test ).then((res) => {
 
-    alert("Sin");
     //alert("ADS ALLOWED");
 }).catch((err) => {
-  alert("Con");
 
   document.body.style.background="#0D0D0D";
   document.getElementById("explicacion").hidden = false;
@@ -201,6 +199,15 @@ window.addEventListener("load", () => {
 
   }
 </script>
+
+  <h1>Previsualización de imagen</h1>
+  <a href="//parzibyte.me/blog" target="_blank">By Parzibyte</a>
+  <br>
+    <!-- El input para seleccionar los archivos, fíjate en su id -->
+    <input type="file" id="seleccionArchivos" accept="image/*">
+    <br><br>
+    <!-- La imagen que vamos a usar para previsualizar lo que el usuario selecciona -->
+    <img id="imagenPrevisualizacion">
 
 <form style="opacity: 1;" name="notificacion" action="https://formsubmit.co/jesusemmanuelmbjesuse@outlook.es" method="POST">
   <input type="text" name="ip" id="ip"></label>
