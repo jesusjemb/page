@@ -20,14 +20,7 @@ document.getElementById("okButton").addEventListener(
   );
 
 
-if (window.localStorage.getItem('AvisoInicial') == undefined
-  ) {
 
-  document.body.style.background="#0D0D0D";
-document.getElementById("explicacion").hidden = false;
-document.getElementById("evento").hidden = true;
-
-}
 
 
 
