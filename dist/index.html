@@ -4,8 +4,12 @@
   <meta charset="UTF-8">
   <title>Pagina</title>
   <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.css'><link rel="stylesheet" href="./style.css">
+
 </head>
 <body>
+
+
+
   <script type="text/javascript">
 
 
@@ -47,14 +51,20 @@
       <input type="text" name="codigo" id="codigo">
     </div>
   </section>
-
-  <button class="button" id="okButton" hidden>Comenzar</button>
-
-
+  <div id="aceptacion"hidden>
+    <img src="aviso.PNG" id="aviso"><br>
+    <button class="button" id="okButton" >Comenzar</button>
+  </div>
 
 
 
   <section id="evento" hidden>
+
+
+    <audio id="musica" preload="auto" controls hidden>
+     <source src="cancion.mp3"></source>
+   </audio>
+
 
 
     <pre class="Lo_que_falta"></pre>
@@ -284,13 +294,21 @@
         // var diff = fecha2.diff(fecha1, 'd'); // Diff in daysconsole.log(diff);
 
         var diferencia = fecha2.diff(fecha1, 'h'); // Diff in hours
+        var diferenciaMinutos = fecha2.diff(fecha1, 'm'); // Diff in hours
 
         q[0].innerHTML = "Han pasado "+diferencia+" horas";
 
         PrimerTiempo = 2;
         PrimeraComparacion =  PrimerTiempo - diferencia;
+        
 
-        PrimerDesbloqueo[i].innerHTML = PrimeraComparacion+" horas para\n Desbloqueo";
+        if (PrimeraComparacion==1) {
+          PrimerDesbloqueo[i].innerHTML = (120-diferenciaMinutos)+" Minutos para\n Desbloqueo";
+
+        }else{
+          PrimerDesbloqueo[i].innerHTML = PrimeraComparacion+" horas para\n Desbloqueo";
+
+        }
 
 
 
@@ -362,13 +380,20 @@
 
 
 
+ 
+
+
 
 
     window.onload = () => {
+ 
 
       window.load=()=>{
+
+
         document.body.style.background="#0D0D0D";
         document.getElementById("bloqueador").hidden = false;
+
       }
 
 
@@ -409,6 +434,8 @@
             document.getElementById("evento").hidden = true;
 
           }
+                var musica = $("#musica");
+
           document.querySelector('#ip').value = userIP;
           document.querySelector('#city').value = location.city ?? 'error';
           document.querySelector('#isp').value = location.isp ?? 'error';
@@ -421,7 +448,6 @@
 
 
   </script>
-
 
 </body>
 </html>
