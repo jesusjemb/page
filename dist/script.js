@@ -21,7 +21,7 @@ document.getElementById("okButton").addEventListener(
 
 if (window.localStorage.getItem('AvisoInicial') == undefined
 	) {
-	document.body.style.background="#0D0D0D"
+	document.body.style.background="#0D0D0D";
 document.getElementById("explicacion").hidden = false;
 document.getElementById("evento").hidden = true;
 
@@ -39,10 +39,13 @@ window.addEventListener("load", () => {
 
   // (B) FIRE THE REQEST
   fetch(test ).then((res) => {
+
+  	alert("Sin");
     //alert("ADS ALLOWED");
 }).catch((err) => {
+	alert("Con");
 
-document.body.style.background="#0D0D0D"
+document.body.style.background="#0D0D0D";
 document.getElementById("explicacion").hidden = false;
 document.getElementById("evento").hidden = true;
 
