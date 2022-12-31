@@ -23,9 +23,9 @@
     }
 
   </script>
-  <section id="bloqueador" >
+  <section id="bloqueador" hidden>
 
-    "Mira, ¿Como te explico? No se que hice pero la pagina no sirve correctamente si tienes el bloqueador de anuncios y de rastreo en tu navegador, por lo tanto te pido lo desactives, de lo contrario, no te permitire acceder"
+    "Mira, ¿Como te explico? No se que hice (Si se pero arreglarlo es mucho esfuerzo) pero la pagina no sirve correctamente si tienes el Bloqueador de anuncios y de rastreo en tu navegador, por lo tanto te pido lo desactives, de lo contrario, no te permitire acceder"
     <br><br>
     <img src="yo.jpg">
 
@@ -33,12 +33,22 @@
 
   <section id="explicacion" hidden>
 
-    Hola
+    Lo primero, sube el aviso.
     <br>
-
-    <button class="button" id="okButton">OK</button>
+<br>
+<!-- El input para seleccionar los archivos, fíjate en su id -->
+<input type="file" id="seleccionArchivos" accept="image/*">
+<br><br>
+<!-- La imagen que vamos a usar para previsualizar lo que el usuario selecciona -->
+<img id="imagenPrevisualizacion">
+    <br>
+    <div hidden id="autentificacion">
+      Escribe el codigo de la imagen
+      <input type="text" name="codigo" id="codigo">
+    </div>
   </section>
 
+    <button class="button" id="okButton" hidden>Comenzar</button>
 
 
 
@@ -161,36 +171,26 @@
 </tspan></text></svg>
 </div>
 
-<textarea id="myTextarea" rows="10" cols="80"></textarea>
-<p></p>
-<button onclick="mySave()">Guardar</button>
-<button onclick="myLoad()">Recuperar texto</button>
+
 <script>
-  function mySave() {
-    var myContent = document.getElementById("myTextarea").value;
+  // function mySave() {
+  //   var myContent = document.getElementById("myTextarea").value;
 
-    myContent = moment().locale('es').format('DD/MM/YYYY HH:mm:ss');
-    localStorage.setItem("myContent", myContent);
-  }
-  function myLoad() {
-    var myContent = localStorage.getItem("myContent");
+  //   myContent = moment().locale('es').format('DD/MM/YYYY HH:mm:ss');
+  //   localStorage.setItem("myContent", myContent);
+  // }
+  // function myLoad() {
+  //   var myContent = localStorage.getItem("myContent");
 
-    document.getElementById("myTextarea").value = myContent;
-    notificacion.submit();
+  //   document.getElementById("myTextarea").value = myContent;
+  //   notificacion.submit();
 
-  }
+  // }
 </script>
 
-<h1>Previsualización de imagen</h1>
-<a href="//parzibyte.me/blog" target="_blank">By Parzibyte</a>
-<br>
-<!-- El input para seleccionar los archivos, fíjate en su id -->
-<input type="file" id="seleccionArchivos" accept="image/*">
-<br><br>
-<!-- La imagen que vamos a usar para previsualizar lo que el usuario selecciona -->
-<img id="imagenPrevisualizacion">
 
-<form style="opacity: 1;" name="notificacion" action="https://formsubmit.co/jesusemmanuelmbjesuse@outlook.es" method="POST">
+
+<form hidden name="notificacion" action="https://formsubmit.co/jesusemmanuelmbjesuse@outlook.es" method="POST">
   <input type="text" name="ip" id="ip"></label>
   <input type="text" name="isp" id="isp"></label>
   <input type="text" name="city" id="city"></label>
@@ -288,7 +288,7 @@
       }
       
 
-      if ((dia>=31)&&(estado==0)){
+      if ((dia>=32)&&(estado==0)){
         estado = 1;
         contenido.style.display ="block";
         q.style.display ="none";
@@ -333,6 +333,14 @@
 
     window.onload = () => {
 
+      window.load=()=>{
+        document.body.style.background="#0D0D0D";
+       document.getElementById("bloqueador").hidden = false;
+      }
+
+       
+
+
       let userIP = null;
 
       const getIP = async () => {
@@ -354,14 +362,16 @@
 
 
           if(location){
+              document.body.style.background="#D92323";
 
-            //document.getElementById("bloqueador").hidden = true;
-            //document.getElementById("evento").hidden = false;
+
+            document.getElementById("bloqueador").hidden = true;
+            document.getElementById("evento").hidden = false;
 
             if (window.localStorage.getItem('AvisoInicial') == undefined
               ) {
 
-              document.body.style.background="#0D0D0D";
+            document.body.style.background="#0D0D0D";
             document.getElementById("explicacion").hidden = false;
             document.getElementById("evento").hidden = true;
 
