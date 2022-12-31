@@ -10,7 +10,7 @@ document.getElementById("okButton").addEventListener(
   "click",
   () => {
 
-    document.body.style.background="#D92323"
+    document.body.style.background="#D92323";
 
     document.getElementById("explicacion").hidden = true;
     document.getElementById("evento").hidden = false;
