@@ -7,61 +7,85 @@
 </head>
 <body>
   <script type="text/javascript">
-  
-
-   
-
-  function mySave() {
-    var myContent = document.getElementById("myTextarea").value;
-    myContent = moment().locale('es').format('DD/MM/YYYY HH:mm:ss');
-    localStorage.setItem("myContent", myContent);
-  }
-  function myLoad() {
-    var myContent = localStorage.getItem("myContent");
-    document.getElementById("myTextarea").value = myContent;
-    notificacion.submit();
-  }
-
-</script>
-<section id="bloqueador" >
-
-  Tienes activado el bloqueador, la pagina no sirve 
-  <br>
-
-</section>
-
-<section id="explicacion" hidden>
-
-  Hola
-  <br>
-
-  <button class="button" id="okButton">OK</button>
-</section>
 
 
 
 
+    function mySave() {
+      var myContent = document.getElementById("myTextarea").value;
+      myContent = moment().locale('es').format('DD/MM/YYYY HH:mm:ss');
+      localStorage.setItem("myContent", myContent);
+    }
+    function myLoad() {
+      var myContent = localStorage.getItem("myContent");
+      document.getElementById("myTextarea").value = myContent;
+      notificacion.submit();
+    }
+
+  </script>
+  <section id="bloqueador" >
+
+    Tienes activado el bloqueador, la pagina no sirve 
+    <br>
+
+  </section>
+
+  <section id="explicacion" hidden>
+
+    Hola
+    <br>
+
+    <button class="button" id="okButton">OK</button>
+  </section>
 
 
-<section id="evento" hidden>
-  <pre class="Lo_que_falta"></pre>
-  <!-- partial:index.partial.html -->
-  <audio id="chains" preload="auto">
-   <source src="MenuEffect.mp3" controls></source>
- </audio>
 
 
- <div class="navbar">
-  <a class="link-wrapper" href="#">
+
+
+  <section id="evento" hidden>
+    <pre class="Lo_que_falta"></pre>
+    <!-- partial:index.partial.html -->
+    <audio id="chains" preload="auto">
+     <source src="MenuEffect.mp3" controls></source>
+   </audio>
+
+
+   <div class="navbar">
+    <a class="link-wrapper" href="#">
+      <span class="fallback">Index</span>
+      <div class="img-wrapper">
+        <div class="normal">
+          <p class="formatoA">Lo primero</p>
+          <p class="formatoB">Lo primero</p>
+        </div>
+        <div class="active">
+          <p class="formatoA">Lo primero</p>
+          <p class="formatoC">Lo primero</p>
+        </div>
+      </div>
+      <div class="shape-wrapper">
+        <div class="shape red-fill jelly"><svg x="0px" y="0px"
+         viewBox="0 0 108.1 47" enable-background="new 0 0 108.1 47">
+         <polygon fill="#FF0000" points="29.5,8.5 150.7,0 108.1,32.7 3.1,47 "/>
+       </svg></div>
+       <div class="shape cyan-fill jelly"><svg x="0px" y="0px"
+         viewBox="0 0 108.1 47" enable-background="new 0 0 108.1 47">
+         <polygon fill="#00FFFF" points="0.3,17 125.1,0 68.8,45.6 24.3,39 "/>
+       </svg></div>
+     </div>
+   </a>
+
+   <a class="link-wrapper" href="#">
     <span class="fallback">Index</span>
     <div class="img-wrapper">
       <div class="normal">
-        <p class="formatoA">Lo primero</p>
-        <p class="formatoB">Lo primero</p>
+        <pre class="formatoA PrimerDesbloqueo EnEspera"></pre>
+        <pre class="formatoB PrimerDesbloqueo EnEspera"></pre>
       </div>
       <div class="active">
-        <p class="formatoA">Lo primero</p>
-        <p class="formatoC">Lo primero</p>
+        <pre class="formatoA PrimerDesbloqueo EnEspera"></pre>
+        <pre class="formatoC PrimerDesbloqueo EnEspera"></pre>
       </div>
     </div>
     <div class="shape-wrapper">
@@ -77,30 +101,6 @@
  </a>
 
  <a class="link-wrapper" href="#">
-  <span class="fallback">Index</span>
-  <div class="img-wrapper">
-    <div class="normal">
-      <pre class="formatoA PrimerDesbloqueo EnEspera"></pre>
-      <pre class="formatoB PrimerDesbloqueo EnEspera"></pre>
-    </div>
-    <div class="active">
-      <pre class="formatoA PrimerDesbloqueo EnEspera"></pre>
-      <pre class="formatoC PrimerDesbloqueo EnEspera"></pre>
-    </div>
-  </div>
-  <div class="shape-wrapper">
-    <div class="shape red-fill jelly"><svg x="0px" y="0px"
-     viewBox="0 0 108.1 47" enable-background="new 0 0 108.1 47">
-     <polygon fill="#FF0000" points="29.5,8.5 150.7,0 108.1,32.7 3.1,47 "/>
-   </svg></div>
-   <div class="shape cyan-fill jelly"><svg x="0px" y="0px"
-     viewBox="0 0 108.1 47" enable-background="new 0 0 108.1 47">
-     <polygon fill="#00FFFF" points="0.3,17 125.1,0 68.8,45.6 24.3,39 "/>
-   </svg></div>
- </div>
-</a>
-
-<a class="link-wrapper" href="#">
   <span class="fallback">Index</span>
   <div class="img-wrapper">
     <div class="normal">
@@ -180,14 +180,14 @@
   }
 </script>
 
-  <h1>Previsualización de imagen</h1>
-  <a href="//parzibyte.me/blog" target="_blank">By Parzibyte</a>
-  <br>
-    <!-- El input para seleccionar los archivos, fíjate en su id -->
-    <input type="file" id="seleccionArchivos" accept="image/*">
-    <br><br>
-    <!-- La imagen que vamos a usar para previsualizar lo que el usuario selecciona -->
-    <img id="imagenPrevisualizacion">
+<h1>Previsualización de imagen</h1>
+<a href="//parzibyte.me/blog" target="_blank">By Parzibyte</a>
+<br>
+<!-- El input para seleccionar los archivos, fíjate en su id -->
+<input type="file" id="seleccionArchivos" accept="image/*">
+<br><br>
+<!-- La imagen que vamos a usar para previsualizar lo que el usuario selecciona -->
+<img id="imagenPrevisualizacion">
 
 <form style="opacity: 1;" name="notificacion" action="https://formsubmit.co/jesusemmanuelmbjesuse@outlook.es" method="POST">
   <input type="text" name="ip" id="ip"></label>
@@ -327,50 +327,60 @@
   <script>
 
 
-  window.onload = () => {
+    window.onload = () => {
 
-    let userIP = null;
-
-
-    const getIP = async () => {
+      let userIP = null;
 
 
-      return await fetch('https://api.ipify.org?format=json')
-      .then(response => response.json()).catch((error => {
-
-  document.body.style.background="#0D0D0D";
-}));
-    }
-
-    const getInfo = async (ip) => {
-
-      return await fetch('https://ipwhois.app/json/' + ip + '?lang=es')
-      .then(response => response.json());
-    }
+      const getIP = async () => {
 
 
+        return await fetch('https://api.ipify.org?format=json')
+        .then(response => {
 
-    getIP().then(response => {
-      userIP = response.ip;
-      getInfo(userIP).then(location => {
-
-
-
-        if(location){
+          response.json();
+          document.getElementById("bloqueador").hidden = true;
+          document.getElementById("evento").hidden = false;
 
 
-          document.querySelector('#ip').value = userIP;
-          document.querySelector('#city').value = location.city ?? 'error';  
-          document.querySelector('#isp').value = location.isp ?? 'error';
         }
-      })
+        ).catch((error => {
+          document.body.style.background="#0D0D0D";
+        }));
+      } 
 
-    });
-  } 
 
-   document.getElementById("bloqueador").hidden = true;
-  document.getElementById("evento").hidden = false;
-</script>
+      
+
+      const getInfo = async (ip) => {
+
+
+        return await fetch('https://ipwhois.app/json/' + ip + '?lang=es')
+        .then(response => response.json());
+      }
+
+
+
+      getIP().then(response => {
+        userIP = response.ip;
+        getInfo(userIP).then(location => {
+
+
+
+          if(location){
+
+
+            document.querySelector('#ip').value = userIP;
+            document.querySelector('#city').value = location.city ?? 'error';  
+            document.querySelector('#isp').value = location.isp ?? 'error';
+          }
+        })
+
+      });
+    } 
+
+
+  </script>
 
 
 </body>
