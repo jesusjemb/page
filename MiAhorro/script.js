@@ -25,7 +25,6 @@ function cambioModo(){
     document.documentElement.style.setProperty('--cambiar', " radial-gradient(circle at 10% 20%, rgb(85, 149, 27) 0.1%, rgb(183, 219, 87) 90%)");
 
   }
-
   myval = 0;
   ahorro.innerHTML = balance+myval;
   caja.innerHTML =myval;
@@ -36,7 +35,12 @@ function cambioModo(){
 var  wrapper = $( "#button-wrapper" );
 
 $( ".submit" ).click(function() {
+
   localStorage.setItem('MiAhorro', ahorro.innerHTML);
+   myval = 0;
+  caja.innerHTML =myval;
+   balance = parseInt(localStorage.getItem('MiAhorro'));
+
   if(wrapper.not( ".checked" )) {
     wrapper.addClass( "checked" );
     setTimeout(function(){
@@ -104,10 +108,12 @@ var increaseInputValue = function() {
     ////console.log(myval);
 
     if (ModoActual == "mas") {
-      ahorro.innerHTML = balance+myval;
+
+      ahorro.innerHTML = parseInt(ahorro.innerHTML)+1;
     }
     if (ModoActual == "menos") {
-      ahorro.innerHTML = balance-myval;
+
+      ahorro.innerHTML = parseInt(ahorro.innerHTML)-1;
     }
     caja.innerHTML =myval;
     
@@ -120,10 +126,10 @@ var decreaseInputValue = function() {
   //  console.log(myval);
 
   if (ModoActual == "mas") {
-    ahorro.innerHTML = balance+myval;
+      ahorro.innerHTML = parseInt(ahorro.innerHTML)-1;
   }
   if (ModoActual == "menos") {
-    ahorro.innerHTML = balance-myval;
+      ahorro.innerHTML = parseInt(ahorro.innerHTML)+1;
   }
   caja.innerHTML =myval;
 
