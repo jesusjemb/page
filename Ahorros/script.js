@@ -1,4 +1,8 @@
 // Reference: https://dribbble.com/shots/5639404-Stepper-XVIII  by Oleg Frolov//
+
+if(!localStorage.getItem('MiAhorro')){
+  localStorage.setItem('MiAhorro', "0");
+}
 var balance = parseInt(localStorage.getItem('MiAhorro'));
 ahorro = document.querySelector(".ahorro span");
 ahorro.innerHTML = balance;
