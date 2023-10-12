@@ -68,7 +68,7 @@ var mainTimer;
 var InitialTimer = 500; //ms
 var NewTimer = InitialTimer;
 var minTimerValue = 50; //ms
-var increment = 1.25;
+var increment = 0;
 var myval = startValue;
 
 var initiate = function() {
