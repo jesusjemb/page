@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Chat de Twitch</title>
+</head>
+<body>
+  <h1>Chat de Twitch</h1>
+  <ul id="chat-list"></ul>
+
+  <script>
+    const ws = new WebSocket('ws://chat-hanncita.onrender.com');
+
+    // Manejar eventos de apertura de la conexión WebSocket
+    ws.addEventListener('open', (event) => {
+      console.log('Conexión WebSocket abierta');
+    });
+
+    // Manejar mensajes recibidos desde el servidor
+    ws.addEventListener('message', (event) => {
+      const chatList = document.getElementById('chat-list');
+      const newMessage = document.createElement('li');
+      newMessage.textContent = event.data;
+      chatList.appendChild(newMessage);
+    });
+
+    // Manejar eventos de cierre y error
+    ws.addEventListener('close', (event) => {
+      console.log('Conexión WebSocket cerrada:', event);
+    });
+
+    ws.addEventListener('error', (event) => {
+      console.error('Error en la conexión WebSocket:', event);
+    });
+  </script>
+</body>
+</html>
