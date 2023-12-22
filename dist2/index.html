@@ -4,35 +4,544 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Chat de Twitch</title>
+  <style>
+    html,
+    body {
+      height: 95%;
+    }
+
+    body {
+      font-family: monospace;
+      margin: 0;
+      background: url("b1.png") no-repeat center center fixed;
+      background-size: cover;
+      transition: background 0.5s ease-in-out;
+    }
+
+    .suelo {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      height: 50px; /* Altura del suelo, ajusta según sea necesario */
+      background: url("https://t3.ftcdn.net/jpg/04/89/11/42/360_F_489114224_rNW6VL5GjJucMpXuz6XlYkhcSHPXYHa3.jpg") repeat-x;
+    }
+
+    .█ {
+      z-index:2;
+      position: absolute;
+      left: 0;
+      bottom: 44px;
+      width: 165px;
+      height: 243px;
+      background: url(HanYsunovio.png) -165px 0 / 300px no-repeat;
+      transition: transform .2s;
+    }
+
+    #pastel {
+      opacity: 0;
+      position: absolute;
+      right: 50%;
+      bottom: 75px;
+      width: 100px;
+      height: 100px;
+      background: url("https://i.gifer.com/6jj.gif") 0 0 / 100px no-repeat;
+      transform: translateX(50%);
+      transition: transform .4s ease-in-out,opacity 2s ease-in-out;
+
+      &.rockeeeeeet {
+        animation: rockeeeeeet .6s ease-in-out both;
+      }
+    }
+
+    @keyframes rockeeeeeet {
+      0%, 6%, 12%, 18%, 24%, 30%, 36%, 42% {
+        transform: translateX(50%) rotate(-12deg);
+      }
+
+      3%, 9%, 15%, 21%, 27%, 33%, 39%, 45% {
+        transform: translateX(50%) rotate(12deg);
+      }
+
+      50% {
+        transform: translateX(50%);
+      }
+
+      100% {
+        transform: translate(50%, -1500px);
+      }
+    }
+
+
+    .dialog-container {
+      position: absolute;
+      bottom: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .dialog {
+      display: flex;
+      align-items: center;
+      position: relative;
+    }
+
+    .avatar {
+      width: 50px;
+      height: 50px;
+      margin-right: 10px;
+      position: absolute;
+      bottom: 0;
+    }
+
+    #game {
+      opacity: 0;
+    transition: opacity 2s ease-in-out;
+
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: linear-gradient(
+        #eee 0%,
+        #bbb 40%,
+        lighten(#cc8, 25%) 40%,
+        #cc8 100%
+      );
+      user-select: none;
+      
+      #game-chatbox {
+        position: absolute;
+        bottom: 0;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 60%;
+        padding: 10px;
+
+        input {
+          width: 100%;
+          padding: 5px;
+        }
+      }
+    }
+
+    body > p {
+      font-size: 24px;
+      color: #888;
+      padding: 10px;
+    }
+
+    .player {
+      font-weight: bold;
+      font-size: 17px;
+      color: orange;
+      text-shadow: -5px -5px 0 black,-5px -4px 0 black,-5px -3px 0 black,-5px -2px 0 black,-5px -1px 0 black,-5px 0px 0 black,-5px 1px 0 black,-5px 2px 0 black,-5px 3px 0 black,-5px 4px 0 black,-5px 5px 0 black,-4px -5px 0 black,-4px -4px 0 black,-4px -3px 0 black,-4px -2px 0 black,-4px -1px 0 black,-4px 0px 0 black,-4px 1px 0 black,-4px 2px 0 black,-4px 3px 0 black,-4px 4px 0 black,-4px 5px 0 black,-3px -5px 0 black,-3px -4px 0 black,-3px -3px 0 black,-3px -2px 0 black,-3px -1px 0 black,-3px 0px 0 black,-3px 1px 0 black,-3px 2px 0 black,-3px 3px 0 black,-3px 4px 0 black,-3px 5px 0 black,-2px -5px 0 black,-2px -4px 0 black,-2px -3px 0 black,-2px -2px 0 black,-2px -1px 0 black,-2px 0px 0 black,-2px 1px 0 black,-2px 2px 0 black,-2px 3px 0 black,-2px 4px 0 black,-2px 5px 0 black,-1px -5px 0 black,-1px -4px 0 black,-1px -3px 0 black,-1px -2px 0 black,-1px -1px 0 black,-1px 0px 0 black,-1px 1px 0 black,-1px 2px 0 black,-1px 3px 0 black,-1px 4px 0 black,-1px 5px 0 black,0px -5px 0 black,0px -4px 0 black,0px -3px 0 black,0px -2px 0 black,0px -1px 0 black,0px 0px 0 black,0px 1px 0 black,0px 2px 0 black,0px 3px 0 black,0px 4px 0 black,0px 5px 0 black,1px -5px 0 black,1px -4px 0 black,1px -3px 0 black,1px -2px 0 black,1px -1px 0 black,1px 0px 0 black,1px 1px 0 black,1px 2px 0 black,1px 3px 0 black,1px 4px 0 black,1px 5px 0 black,2px -5px 0 black,2px -4px 0 black,2px -3px 0 black,2px -2px 0 black,2px -1px 0 black,2px 0px 0 black,2px 1px 0 black,2px 2px 0 black,2px 3px 0 black,2px 4px 0 black,2px 5px 0 black,3px -5px 0 black,3px -4px 0 black,3px -3px 0 black,3px -2px 0 black,3px -1px 0 black,3px 0px 0 black,3px 1px 0 black,3px 2px 0 black,3px 3px 0 black,3px 4px 0 black,3px 5px 0 black,4px -5px 0 black,4px -4px 0 black,4px -3px 0 black,4px -2px 0 black,4px -1px 0 black,4px 0px 0 black,4px 1px 0 black,4px 2px 0 black,4px 3px 0 black,4px 4px 0 black,4px 5px 0 black,5px -5px 0 black,5px -4px 0 black,5px -3px 0 black,5px -2px 0 black,5px -1px 0 black,5px 0px 0 black,5px 1px 0 black,5px 2px 0 black,5px 3px 0 black,5px 4px 0 black,5px 5px 0 black;      position: absolute;
+      z-index: 50;
+      top: 50%;
+      left: 40%;
+      width: 68px;
+      height: 229px;
+
+      &:before {
+        content: '';
+        position: absolute;
+        z-index: 2;
+        width: 100%;
+        height: 100%;
+        background-repeat: no-repeat;
+      }
+
+      .nick {
+
+        position: absolute;
+        left: 50%;
+        bottom: 100%;
+        transform: translateX(-50%);
+        margin-bottom: 5px;
+        font-size: 17px;
+        color: #fff;
+        text-shadow: -5px -5px 0 black,-5px -4px 0 black,-5px -3px 0 black,-5px -2px 0 black,-5px -1px 0 black,-5px 0px 0 black,-5px 1px 0 black,-5px 2px 0 black,-5px 3px 0 black,-5px 4px 0 black,-5px 5px 0 black,-4px -5px 0 black,-4px -4px 0 black,-4px -3px 0 black,-4px -2px 0 black,-4px -1px 0 black,-4px 0px 0 black,-4px 1px 0 black,-4px 2px 0 black,-4px 3px 0 black,-4px 4px 0 black,-4px 5px 0 black,-3px -5px 0 black,-3px -4px 0 black,-3px -3px 0 black,-3px -2px 0 black,-3px -1px 0 black,-3px 0px 0 black,-3px 1px 0 black,-3px 2px 0 black,-3px 3px 0 black,-3px 4px 0 black,-3px 5px 0 black,-2px -5px 0 black,-2px -4px 0 black,-2px -3px 0 black,-2px -2px 0 black,-2px -1px 0 black,-2px 0px 0 black,-2px 1px 0 black,-2px 2px 0 black,-2px 3px 0 black,-2px 4px 0 black,-2px 5px 0 black,-1px -5px 0 black,-1px -4px 0 black,-1px -3px 0 black,-1px -2px 0 black,-1px -1px 0 black,-1px 0px 0 black,-1px 1px 0 black,-1px 2px 0 black,-1px 3px 0 black,-1px 4px 0 black,-1px 5px 0 black,0px -5px 0 black,0px -4px 0 black,0px -3px 0 black,0px -2px 0 black,0px -1px 0 black,0px 0px 0 black,0px 1px 0 black,0px 2px 0 black,0px 3px 0 black,0px 4px 0 black,0px 5px 0 black,1px -5px 0 black,1px -4px 0 black,1px -3px 0 black,1px -2px 0 black,1px -1px 0 black,1px 0px 0 black,1px 1px 0 black,1px 2px 0 black,1px 3px 0 black,1px 4px 0 black,1px 5px 0 black,2px -5px 0 black,2px -4px 0 black,2px -3px 0 black,2px -2px 0 black,2px -1px 0 black,2px 0px 0 black,2px 1px 0 black,2px 2px 0 black,2px 3px 0 black,2px 4px 0 black,2px 5px 0 black,3px -5px 0 black,3px -4px 0 black,3px -3px 0 black,3px -2px 0 black,3px -1px 0 black,3px 0px 0 black,3px 1px 0 black,3px 2px 0 black,3px 3px 0 black,3px 4px 0 black,3px 5px 0 black,4px -5px 0 black,4px -4px 0 black,4px -3px 0 black,4px -2px 0 black,4px -1px 0 black,4px 0px 0 black,4px 1px 0 black,4px 2px 0 black,4px 3px 0 black,4px 4px 0 black,4px 5px 0 black,5px -5px 0 black,5px -4px 0 black,5px -3px 0 black,5px -2px 0 black,5px -1px 0 black,5px 0px 0 black,5px 1px 0 black,5px 2px 0 black,5px 3px 0 black,5px 4px 0 black,5px 5px 0 black;        white-space: nowrap;
+        font-weight: bold;
+
+      }
+
+      .messages-holder {
+        position: absolute;
+        left: 50%;
+        bottom: 115%;
+        transform: translateX(-50%);
+        width: 200px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+
+        .message {
+          text-align: center;
+          padding: 3px;
+          margin-top: 2px;
+          font-size: 14px;
+          color: #333;
+          background: #eee;
+          border: 1px solid #aaa;
+          border-radius: 5px;
+        }
+      }
+    }
+
+
+  </style>
 </head>
 <body>
-  <h1>Chat de Twitch</h1>
-  <ul id="chat-list"></ul>
+  <h1 id="prueba" style="color: white;    font-size: 34px;
+    padding: 7%;" >Imagina que estas en un bosque junto a Hanncita, eres su novio, y hoy es su cumpleaños, asi que le prepaste algo especial, y mas tomando en cuenta que solo tienes 12 añitos</h1>
+  <div class="suelo"></div>
+
+  <div class="█"></div>
+  <div id="pastel"></div>
+  <div id="chat-container" class="dialog-container"></div>
+  <div id="game"></div>
 
   <script>
-    const ws = new WebSocket('wss://chat-hanncita.onrender.com');
+    let elementoModificado = document.querySelector("#prueba");
+    let pappus = document.getElementById('game');
+
+    'use strict';
+    var unicorn = document.querySelector('.█'),
+    cake = document.getElementById('pastel'),
+    cakePosition = cake.offsetLeft,
+    start = 0,
+    step = 50,
+    originalBackgroundPosition = -165,
+    isFlipped = false,
+    unicornLength = unicorn.clientWidth,
+        escenario = 0, // Variable para determinar el escenario actual
+        escenarios = [
+          "b1.png",
+          "b2.png",
+          "b3.png",
+          "https://upload.wikimedia.org/wikipedia/commons/thumb/4/49/A_black_image.jpg/640px-A_black_image.jpg"
+        ]; // Array con las URL de las imágenes de los escenarios
+        function cambiarEscenario(direccion) {
+
+          if (direccion === 'derecha' && escenario === 0) {
+            elementoModificado.innerHTML = "Y en eso comienza a llover, sin embargo a pesar de que las gotas no son lo suficente grandes como para ser vizualizadas si para mojarlos a ambos";
+          } 
+
+          if (direccion === 'derecha' && escenario === 1) {
+            elementoModificado.innerHTML = "Asi que buscan refugio, y afortunadamente llegan a la cueva donde estaba su sorpresa";
+          }
+
+          if (direccion === 'derecha' && escenario === escenarios.length - 2) {
+
+
+            elementoModificado.innerHTML = "Sin embargo al entrar, Hanncita te comienza a quitar la ropa, pero antes le dices que ahi esta un pastel...";
+
+            document.getElementById("pastel").style.opacity="1";
+
+          }
+
+          if (direccion === 'derecha' && escenario < escenarios.length - 1) {
+            start = 0;
+            unicorn.style.transform = 'translateX(0) rotateY(0)';
+            escenario++;
+          } else if (direccion === 'izquierda' && escenario > 0) {
+            if (start > 0 || escenario !== escenarios.length - 1) {
+              start = window.innerWidth - unicornLength;
+              unicorn.style.transform = `translateX(${start}px) rotateY(180deg)`;
+              escenario--;
+            }
+          }
+
+          document.body.style.background = `url("${escenarios[escenario]}") no-repeat center center fixed`;
+          document.body.style.backgroundSize = 'cover';
+
+    // Verifica si es el último escenario y el personaje está en la mitad de la pantalla
+
+        }
+
+
+        function updateBackgroundPosition() {
+          const backgroundPosition = start === 0 ? originalBackgroundPosition : 0;
+          unicorn.style.backgroundPosition = `${backgroundPosition}px 0`;
+        }
+
+        window.addEventListener('keydown', event => {
+          var code = event.keyCode;
+
+          if (code === 39 || code === 37) {
+            isFlipped = code === 37;
+
+            start += code === 39 ? step : -step;
+
+            if (start < 0) {
+              start = 0;
+              if (escenario !=escenarios.length-1) {      cambiarEscenario('izquierda');
+            }
+          } else if (start + unicornLength > window.innerWidth) {
+            start = 0;
+            if (escenario !=escenarios.length-1) {      cambiarEscenario('derecha');
+          }    }
+
+          unicorn.style.transform = `translateX(${start}px)${isFlipped ? ' rotateY(180deg)' : ''}`;
+
+    // Actualiza la posición del fondo cuando se mueve
+          updateBackgroundPosition();
+        }
+      });
+
+        window.addEventListener('keyup', () => {
+  // Restaura la posición original del fondo solo si el personaje está en movimiento
+          if (start !== 0) {
+            start = start;
+            unicorn.style.transform = `translateX(${start}px)${isFlipped ? ' rotateY(180deg)' : ''}`;
+
+    // Restaura la posición original del fondo al dejar de moverse
+            unicorn.style.backgroundPosition = `-167px 0`;
+          }
+
+          console.log(""+start + unicornLength / 2 >= window.innerWidth / 2);
+
+          if (escenario === escenarios.length - 1 && start + unicornLength / 2 >= window.innerWidth / 2) {
+            if (!cake.classList.contains('rockeeeeeet')) {
+              cake.classList.add('rockeeeeeet');
+            }
+          }});
+        cake.addEventListener('animationend', function () {
+    // Aplicar una transición al cambio de fondo
+          document.body.style.transition = "background 3s ease-in-out";
+document.getElementById("game").style.opacity = "1";
+
+
+    // Cambiar el fondo con una nueva imagen
+          document.body.style.background = `url("./pixelart vista de videojuego 2D. Dentro de cueva g (1).jpg")center center / cover no-repeat fixed`;
+    document.body.style.backgroundSize = 'cover';  // Asegurarse de que background-size esté configurado para evitar el encogimiento
+
+    var audio = new Audio('FELIZ CUMPLEAÑOS  SATURADO  BASS BOSTED.mp3');
+    audio.volume = 0.1;
+    audio.play();
+
+            setTimeout(function() {
+
+    elementoModificado.innerHTML = "Feliz Cumpleaños retrasado como tu <3";
+
+            }, 3000);   
+
+    elementoModificado.innerHTML = "Y ahi estamos todos¡¡¡";
+  });
+
+
+//ssssssssssssssssssssssssd
+
+
+
+        const chatContainer = document.getElementById('chat-container');
+
+        class Game {
+
+changeAppearanceForAllPlayers(newBackgroundImage, newBackgroundSize, newBackgroundPosition) {
+    for (const playerId in this.players) {
+      const player = this.players[playerId];
+      player.changeBackground(newBackgroundImage);
+      player.changeBackgroundSize(newBackgroundSize);
+      player.changeBackgroundPosition(newBackgroundPosition);
+    }
+  }
+          constructor() {
+            this.players = {};
+          }
+
+          addPlayer(player) {
+            if (!this.players[player.id]) {
+              this.players[player.id] = player;
+              this.renderPlayer(player);
+            }
+          }
+
+          renderPlayer(player) {
+            const gameContainer = document.getElementById('game');
+            gameContainer.appendChild(player.getElement());
+
+    // Asignar posición horizontal aleatoria y posición vertical constante
+            const horizontalPosition = Math.random() * (window.innerWidth - player.element.offsetWidth);
+    const verticalPosition =569; // Cambiar a la posición vertical deseada
+    player.element.style.left = `${horizontalPosition}px`;
+    player.element.style.top = `${verticalPosition}px`;
+
+  }
+}
+
+class Player {
+   changeBackgroundPosition(newBackgroundPosition) {
+    this.element.style.backgroundPosition = newBackgroundPosition;
+  }
+  constructor(id, nick) {
+    this.id = id;
+    this.nick = nick;
+    this.poseNumber = Math.floor(Math.random() * 8) + 1; // Generar el número de pose al crear el jugador
+
+  }
+
+  changeBackgroundSize(newBackgroundSize) {
+    this.element.style.backgroundSize = newBackgroundSize;
+  }
+  changeBackground(newBackgroundImage) {
+    this.element.style.backgroundImage = `url(${newBackgroundImage})`;
+  }
+  getElement() {
+    if (!this.element) {
+      this.element = document.createElement('div');
+      this.element.classList.add('player');
+      this.element.id = this.id;
+
+      // Utilizar la poseNumber específica para este jugador
+      this.element.style.backgroundImage = 'url(papus.png)';
+      this.element.style.backgroundSize = '600px';
+      this.element.style.backgroundRepeat = 'no-repeat';
+
+      this.applyBackgroundPosition(this.poseNumber);
+
+      const nickElement = document.createElement('div');
+      nickElement.classList.add('nick');
+      nickElement.textContent = this.nick;
+      this.element.appendChild(nickElement);
+
+      const messagesHolder = document.createElement('div');
+      messagesHolder.classList.add('messages-holder');
+      this.element.appendChild(messagesHolder);
+
+      this.messagesHolderElement = messagesHolder;
+    }
+
+    return this.element;
+  }
+
+  getMessagesHolderElement() {
+    return this.messagesHolderElement;
+  }
+
+
+  applyBackgroundPosition(poseNumber) {
+    switch (poseNumber) {
+    case 1:
+      this.element.style.backgroundPosition = '-2px 0';
+      break;
+    case 2:
+      this.element.style.backgroundPosition = '-88px 0';
+      break;
+    case 3:
+      this.element.style.backgroundPosition = '-175px 0';
+      break;
+    case 4:
+      this.element.style.backgroundPosition = '-263px 0';
+      break;
+    case 5:
+      this.element.style.backgroundPosition = '-351px 0';
+      break;
+    case 6:
+      this.element.style.backgroundPosition = '-440px 0';
+      break;
+    case 7:
+      this.element.style.backgroundPosition = '-530px 0';
+      break;
+
+
+    case 8:
+      this.element.style.backgroundPosition = '-2px -236px';
+      break;
+    case 9:
+      this.element.style.backgroundPosition = '-88px -236px';
+      break;
+    case 10:
+      this.element.style.backgroundPosition = '-175px -236px';
+      break;
+    case 11:
+      this.element.style.backgroundPosition = '-263px -236px';
+      break;
+    case 12:
+      this.element.style.backgroundPosition = '-351px -236px';
+      break;
+    case 13:
+      this.element.style.backgroundPosition = '-440px -236px';
+      break;
+    case 14:
+      this.element.style.backgroundPosition = '-530px -236px';
+      break;
+
+
+
+    default:
+        // Si no coincide con ninguna pose, puedes agregar un caso predeterminado o manejarlo según tus necesidades
+      break;
+    }
+  }
+
+}
+
+
+
+const game = new Game();
+
+const ws = new WebSocket('wss://chat-hanncita.onrender.com');
 
     // Manejar eventos de apertura de la conexión WebSocket
-    ws.addEventListener('open', (event) => {
-      console.log('Conexión WebSocket abierta');
-    });
+ws.addEventListener('open', (event) => {
+  console.log('Conexión WebSocket abierta');
+});
 
-    // Manejar mensajes recibidos desde el servidor
-    ws.addEventListener('message', (event) => {
-      const chatList = document.getElementById('chat-list');
-      const newMessage = document.createElement('li');
-      newMessage.textContent = event.data;
-      chatList.appendChild(newMessage);
-    });
+   ws.addEventListener('message', (event) => {
+  const { username, message } = parseMessage(event.data);
+
+  // Verificar si el usuario ya tiene un avatar
+  if (!game.players[username]) {
+    const player = new Player(username, username); // El nombre del jugador por defecto es el mismo que el nombre de usuario
+    game.addPlayer(player);
+  }
+
+  // Obtener el jugador existente y actualizar el mensaje
+  const player = game.players[username];
+  const messagesHolder = player.getMessagesHolderElement();
+  messagesHolder.textContent = message;
+
+  // Ocultar el mensaje después de 7 segundos
+  setTimeout(() => {
+    messagesHolder.textContent = '';
+  }, 7000);
+
+  // Verificar si el mensaje contiene la palabra "bailemos"
+  if (message.toLowerCase().includes('bailemos')) {
+    xd(); // Llamar a la función xd()
+  }
+});
 
     // Manejar eventos de cierre y error
-    ws.addEventListener('close', (event) => {
-      console.log('Conexión WebSocket cerrada:', event);
-    });
+ws.addEventListener('close', (event) => {
+  console.log('Conexión WebSocket cerrada:', event);
+});
 
-    ws.addEventListener('error', (event) => {
-      console.error('Error en la conexión WebSocket:', event);
-    });
-  </script>
+ws.addEventListener('error', (event) => {
+  console.error('Error en la conexión WebSocket:', event);
+});
+
+    // Función para analizar el mensaje en el formato "username: message"
+function parseMessage(rawMessage) {
+  const [username, message] = rawMessage.split(': ');
+  return { username, message };
+}
+
+
+function xd(){
+    const newBackgroundPosition = '0'; // Nuevo background-position
+
+    const newBackgroundSize = '90px'; // Nuevo background-size
+
+   const newBackgroundImage = 'DinoDance.gif'; // Reemplazar con la nueva URL del fondo
+  game.changeAppearanceForAllPlayers(newBackgroundImage, newBackgroundSize, newBackgroundPosition);
+
+
+ }
+
+</script>
 </body>
 </html>
