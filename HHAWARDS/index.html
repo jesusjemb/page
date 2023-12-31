@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en" >
+<head>
+  <meta charset="UTF-8">
+  <title>HH AWARDS</title>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.3/modernizr.min.js" type="text/javascript"></script>
+  <link href="https://fonts.googleapis.com/css?family=Oswald" rel="stylesheet">
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
+  <link rel="stylesheet" href="./inicio.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/prefixfree/1.0.7/prefixfree.min.js"></script>
+
+</head>
+<body>
+  <!-- partial:index.partial.html -->
+  <div class="wrapper">
+    <div id="canvas-container"></div>
+    <a href="./categoria.html?conjunto=conjunto1">
+      <div class="clip-text clip-text_one">Papeada del año</div>
+    </a>
+    <a href="./categoria.html?conjunto=conjunto2">
+      <div class="clip-text clip-text_one">MOD DEL AÑO</div>
+    </a>
+    <a href="./categoria.html?conjunto=conjunto3">
+      <div class="clip-text clip-text_one">DIBUJANTE DEL AÑO</div>
+    </a>
+    <a href="./categoria.html?conjunto=conjunto4">
+      <div class="clip-text clip-text_one">EMOTE DEL AÑO</div>
+    </a>
+    <a href="./categoria.html?conjunto=conjunto5">
+      <div class="clip-text clip-text_one">MOMERO DEL AÑO</div>
+    </a>
+    <a href="./categoria.html?conjunto=conjunto6">
+      <div class="clip-text clip-text_one">VIP DEL AÑO</div>
+    </a>
+    <a href="./categoria.html?conjunto=conjunto7">
+      <div class="clip-text clip-text_one">FEMBOY DEL AÑO</div>
+    </a>
+    <a href="./categoria.html?conjunto=conjunto8">
+      <div class="clip-text clip-text_one">SHIPPEO DEL AÑO</div>
+    </a>
+
+    <a href="./categoria.html?conjunto=conjunto9">
+      <div class="clip-text clip-text_one">PAPEADA DEL AÑO</div>
+    </a>
+
+    <a href="./categoria.html?conjunto=conjunto10">
+      <div class="clip-text clip-text_one">BEST INACTIVO</div>
+    </a>
+ <a href="./categoria.html?conjunto=conjunto11">
+      <div class="clip-text clip-text_one">MEJORES COPYS EN EL CHAT</div>
+    </a>
+ <a href="./categoria.html?conjunto=conjunto12">
+      <div class="clip-text clip-text_one">VIEWER REVELACIÓN</div>
+    </a>
+ <a href="./categoria.html?conjunto=conjunto13">
+      <div class="clip-text clip-text_one">FANFIC DEL AÑO</div>
+    </a>
+
+
+   
+  </div>
+  <!-- partial -->
+  <script src='https://code.jquery.com/jquery-2.2.4.min.js'></script>
+
+  <script type="text/javascript">
+    let particles = [];
+    let frequency = 20;
+// Popolate particles
+    setInterval(
+      function () {
+        popolate();
+      }.bind(this),
+      frequency);
+
+
+let canvasWidth = 500;  // Modifica según tus necesidades
+let canvasHeight = 300; // Modifica según tus necesidades
+
+let c1 = createCanvas({ width: canvasWidth, height: canvasHeight });
+let c2 = createCanvas({ width: canvasWidth, height: canvasHeight });
+let c3 = createCanvas({ width: canvasWidth, height: canvasHeight });
+
+let tela = c1.canvas;
+let canvas = c1.context;
+
+// $("body").append(tela);
+$("#canvas-container").append(c3.canvas);
+writeText(c2.canvas, c2.context, "HH\nAwards");
+
+
+class Particle {
+  constructor(canvas, options) {
+    let random = Math.random();
+    this.canvas = canvas;
+    this.x = options.x;
+    this.y = options.y;
+    this.s = 3 + Math.random();
+    this.a = 0;
+    this.w = $(window).width();
+    this.h = $(window).height();
+    this.radius = 0.5 + Math.random() * 20;
+    this.color = this.radius > 5 ? "#007BFF" : "#228711"; //this.randomColor()
+  }
+
+  randomColor() {
+    let colors = ["#007BFF", "#228711"];
+    return colors[this.randomIntFromInterval(0, colors.length - 1)];
+  }
+
+  randomIntFromInterval(min, max) {
+    return Math.floor(Math.random() * (max - min + 1) + min);
+  }
+
+  render() {
+    this.canvas.beginPath();
+    this.canvas.arc(this.x, this.y, this.radius, 0, 2 * Math.PI);
+    this.canvas.lineWidth = 2;
+    this.canvas.fillStyle = this.color;
+    this.canvas.fill();
+    this.canvas.closePath();
+  }
+
+  move() {
+    //this.swapColor()
+    this.x += Math.cos(this.a) * this.s;
+    this.y += Math.sin(this.a) * this.s;
+    this.a += Math.random() * 0.8 - 0.4;
+
+    if (this.x < 0 || this.x > this.w - this.radius) {
+      return false;
+    }
+
+    if (this.y < 0 || this.y > this.h - this.radius) {
+      return false;
+    }
+    this.render();
+    return true;
+  }}
+
+
+  function createCanvas(properties) {
+    let canvas = document.createElement('canvas');
+    canvas.width = properties.width;
+    canvas.height = properties.height;
+    let context = canvas.getContext('2d');
+    return {
+      canvas: canvas,
+      context: context };
+
+    }
+
+    function writeText(canvas, context, text) {
+      let size = 150;
+      context.font = size + "px Montserrat";
+      context.fillStyle = "#111111";
+      context.textAlign = "center";
+      let lineheight = 70;
+      let lines = text.split('\n');
+      for (let i = 0; i < lines.length; i++) {
+        context.fillText(lines[i], canvas.width / 2, canvas.height / 2 + lineheight * i - lineheight * (lines.length - 1) / 3);
+      }
+    }
+
+    function maskCanvas() {
+      c3.context.drawImage(c2.canvas, 0, 0, c2.canvas.width, c2.canvas.height);
+      c3.context.globalCompositeOperation = 'source-atop';
+      c3.context.drawImage(c1.canvas, 0, 0);
+      blur(c1.context, c1.canvas, 2);
+    }
+
+    function blur(ctx, canvas, amt) {
+      ctx.filter = `blur(${amt}px)`;
+      ctx.drawImage(canvas, 0, 0);
+      ctx.filter = 'none';
+    }
+
+
+/*
+ * Function to clear layer canvas
+ * @num:number number of particles
+ */
+    function popolate() {
+      particles.push(
+        new Particle(canvas, {
+          x: canvasWidth / 2,
+          y: canvasHeight / 2,
+        })
+        );
+
+      return particles.length;
+    }
+
+    function clear() {
+      canvas.globalAlpha = 0.03;
+      canvas.fillStyle = '#111111';
+      canvas.fillRect(0, 0, tela.width, tela.height);
+      canvas.globalAlpha = 1;
+    }
+
+    function update() {
+      clear();
+      particles = particles.filter(function (p) {
+        return p.move();
+      });
+      maskCanvas();
+      requestAnimationFrame(update.bind(this));
+    }
+
+    update();
+  </script>
+</body>
+</html>
