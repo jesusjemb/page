@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en" >
+<head>
+  <meta charset="UTF-8">
+  <title>HH AWARDS</title>
+  <link rel="stylesheet" href="./style.css">
+  <script src='https://cdnjs.cloudflare.com/ajax/libs/PreloadJS/1.0.1/preloadjs.js'></script>
+  <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js'></script>
+</head>
+<body>
+  <!-- partial:index.partial.html -->
+
+  <section class="galeria">
+    <a href="index.html">
+          <div id="canvas-container" style="    text-align-last: center;"></div>
+</a>
+    <div class="container">
+      <h1 class="tit" id="nombretema">MOD DEL AÑO
+      </h1>
+      <h2 id="descripciontema">Aquellos seres celestiales que se encargan de mantener a los changos del chat a raya</h2>
+      <div class="contenedorImgs"></div>
+
+<div id="buttonContainer" style="display: flex; justify-content: space-between;">
+  <button class="custom-btn btn-5" id="botonConjuntoAnterior" style=""><span>Categoria Anterior</span></button>
+  <button class="custom-btn btn-5" id="ganador" ><span>Mostrar ganador</span></button>
+  <button class="custom-btn btn-5" id="botonConjuntoSiguiente" style=""><span>Categoria Siguiente</span></button>
+</div>
+
+
+
+   </div>
+
+ </section>
+
+
+ <!-- partial -->
+
+ <div class="main-container" id="ganada" style="  display: none;
+ ">
+ <div class="img img-1"></div>
+ <div class="img img-2"></div>
+
+ <div class="title title-1">El ganador a <br>papedada del año es..</div>
+ <div class="title title-2">Hanncitta</div>
+
+
+ <div class="loader-container">
+  <div class="loader"> </div>
+  <p>Obteniendo Ganador...</p>
+</div>
+</div>
+<div class="preloaded"></div>
+<!-- Agrega estas líneas en tu archivo HTML -->
+<script src="https://apis.google.com/js/api.js"></script>
+<script  src="./script.js"></script>
+
+</body>
+</html>
