@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>CSS Responsive Scroll-Driven Text Reveals [Chrome 115+]</title>
+    <link
+      rel="stylesheet"
+      href="https://public.codepenassets.com/css/normalize-5.0.0.min.css"
+    />
+    <link rel="stylesheet" href="./style.css" />
+  </head>
+  <body>
+    <header>
+      <h1>Sofia…</h1>
+    </header>
+    <main>
+      <section class="reveal-section">
+        <p>
+          <span contenteditable="true"
+            >No se como llegar a decirte esto. Pero se a lo que quiero llegar,
+            siempre lo supe.
+          </span>
+        </p>
+      </section>
+
+      <section class="reveal-section">
+        <p>
+          <span
+            contenteditable="false"
+            class="time-counter"
+            data-start-date="2025-05-11T14:47:00"
+          >
+            Llevamos ya [tiempo calculado] de habernos conocido, de estar en la
+            vida de uno y del otro.
+          </span>
+        </p>
+      </section>
+
+      <section class="reveal-section">
+        <p>
+          <span
+            contenteditable="false"
+            class="time-counter"
+            data-start-date="2025-05-11T14:47:00"
+          >
+            Llevo ya [tiempo calculado] siendo feliz cada minuto de mi
+            existencia.
+          </span>
+        </p>
+      </section>
+
+      <section class="reveal-section">
+        <p>
+          <span
+            contenteditable="false"
+            class="time-counter"
+            data-start-date="2025-05-11T14:47:00"
+          >
+            Llevas ya [tiempo calculado] siendo la razón del latido de mi
+            corazón.
+          </span>
+        </p>
+      </section>
+
+      <section class="reveal-section">
+        <p>
+          <span
+            contenteditable="false"
+            class="time-counter"
+            data-start-date="2025-05-11T14:47:00"
+          >
+            [tiempo calculado] en el que solo he intentado ganar tiempo.
+          </span>
+        </p>
+      </section>
+
+      <section class="reveal-section">
+        <p>
+          <span contenteditable="true">¿Pero tiempo para que?</span>
+        </p>
+      </section>
+
+      <section class="reveal-section">
+        <p>
+          <span contenteditable="true"
+            >Al inicio, solo era tiempo, para tratar de convertirme en el hombre
+            que te merece, alguien que da todo de sí, por ti, alguien que no
+            solo sabe el hermoso valor que tienes, si no también alguien que da
+            todo por demostrarlo.
+          </span>
+        </p>
+      </section>
+
+      <section class="reveal-section">
+        <p>
+          <span contenteditable="true"
+            >Pero cada día, que me levantaba, sabía que poco a poco nacía una
+            batalla a la cual no podía ganar. Cada día en el que sentía tu dulce
+            cariño, escuchaba tu cálida voz, tu divina belleza. Mi corazón me
+            trataba de advertir que pronto llegaría de nuevo a mi vida aquella
+            catástrofe, una a la que por tanto tiempo he evitado de volver a
+            ver.
+          </span>
+        </p>
+      </section>
+
+      <section class="reveal-section">
+        <p>
+          <span contenteditable="true"
+            >No paso tiempo, hasta que comencé a tener visiones de esa
+            catástrofe que estaba por venir, visiones hermosas de una vida a tu
+            lado, una vida viviendo uno para el otro, una vida tan dulce capaz
+            de empalagar al beso de la muerte, una vida que soy incapaz de dejar
+            desear.
+          </span>
+        </p>
+      </section>
+
+      <section class="reveal-section">
+        <p>
+          <span contenteditable="true"
+            >Una catástrofe que está en las puertas de mi corazón, una
+            catástrofe que intentó detener, pero por mas que intento, he llegado
+            a mi Límite, mi corazón sangra, mi corazón duele, ya no puedo
+            contener aquello que siento por ti, ya no puedo contener esta
+            catástrofe, ya estoy cansado.
+          </span>
+        </p>
+      </section>
+
+      <section class="reveal-section">
+        <p>
+          <span contenteditable="true"
+            >Ya es tarde, no puedo hacer nada más por detenerlo, bastó, con no
+            tenerte anoche, para saber el dolor que me causa seguir intentando
+            fingir que no siento lo que siento, mi corazón llego al limite, y en
+            cualquier momento colapsara, aquella catástrofe lo inundara todo de
+            nuevo...
+          </span>
+        </p>
+      </section>
+
+      <section class="reveal-section">
+        <p>
+          <span contenteditable="true"
+            >Sofía, ya sé cómo decirte esto, siempre lo supe, pero ya no tengo
+            miedo de decirlo.
+          </span>
+        </p>
+      </section>
+
+      <section class="reveal-section">
+        <p>
+          <span contenteditable="true">Te amo. </span>
+        </p>
+      </section>
+
+      <section class="reveal-section">
+        <p>
+          <span contenteditable="true"
+            >Permíteme ahogar mi corazón en las aguas de tu amor.<br /><br />
+            Permíteme, entregarte mi corazón, y secarlo en la calidez de tu
+            alma.<br /><br />Permíteme vivir para ti cada segundo de mi
+            existencia. <br /><br />Permíteme tomar tu mano hasta la eternidad.
+          </span>
+        </p>
+      </section>
+    </main>
+    <footer>
+      <h2>[Editar Texto]</h2>
+    </footer>
+    <script>
+      function updateTimeCounters() {
+        document.querySelectorAll(".time-counter").forEach((element) => {
+          const startDate = new Date(element.getAttribute("data-start-date"));
+          const now = new Date();
+          const diff = now - startDate;
+
+          // Calcular años, meses, días, horas, minutos
+          const years = Math.floor(diff / (1000 * 60 * 60 * 24 * 365));
+          const months = Math.floor(
+            (diff % (1000 * 60 * 60 * 24 * 365)) / (1000 * 60 * 60 * 24 * 30)
+          );
+          const days = Math.floor(
+            (diff % (1000 * 60 * 60 * 24 * 30)) / (1000 * 60 * 60 * 24)
+          );
+          const hours = Math.floor(
+            (diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)
+          );
+          const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+
+          // Formatear el texto
+          let timeText = "";
+          if (years > 0) timeText += `${years} año${years > 1 ? "s" : ""}, `;
+          if (months > 0)
+            timeText += `${months} mes${months > 1 ? "es" : ""}, `;
+          if (days > 0) timeText += `${days} día${days > 1 ? "s" : ""}, `;
+          if (hours > 0) timeText += `${hours} hora${hours > 1 ? "s" : ""} y `;
+          timeText += `${minutes} minuto${minutes > 1 ? "s" : ""}`;
+
+          // Reemplazar el texto
+          const originalText = element.textContent.trim();
+          element.textContent = originalText.replace(
+            "[tiempo calculado]",
+            timeText
+          );
+        });
+      }
+
+      document.addEventListener("DOMContentLoaded", () => {
+        updateTimeCounters();
+        setInterval(updateTimeCounters, 60000); // Actualizar cada minuto
+      });
+    </script>
+    <script type="module" src="./script.js"></script>
+  </body>
+</html>
